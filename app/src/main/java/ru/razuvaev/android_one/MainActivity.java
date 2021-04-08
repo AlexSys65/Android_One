@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         boolean on = ((ToggleButton) v).isChecked();
         if (on) {
-            Toast.makeText(this, "light on", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "light on!", Toast.LENGTH_LONG).show();
         } else {
             Toast.makeText(this, "light off!", Toast.LENGTH_LONG).show();
         }
