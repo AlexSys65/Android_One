@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="resultScreen">44sp</dimen>
+    <dimen name="preScreen">34sp</dimen>
+    <dimen name="numBtn">40sp</dimen>
+</resources>
