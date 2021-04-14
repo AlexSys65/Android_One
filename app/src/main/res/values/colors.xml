@@ -8,4 +8,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="red">#E10C0C</color>
+    <color name="colorMemory">#cd853f</color>
+    <color name="colorTopButton">#d1b798</color>
+    <color name="colorButCancel">#ffff8800</color>
+    <color name="colorNumberButton">#3c3c3c</color>
+    <color name="colorButtonAct">#964b00</color>
+    <color name="colorScreen">#FFEB3B</color>
+    <color name="colorAction">#000000</color>
+    <color name="colorAction_two">#504F4F</color>
 </resources>
