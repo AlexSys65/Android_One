@@ -46,7 +46,7 @@
             android:insetLeft="@dimen/field_between_buttons"
             android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_clear"
-            android:onClick="numbBtnClick"
+            android:onClick="cancelClick"
             android:textSize="@dimen/numBtn" />
         <Button
             android:id="@+id/button_DIV"
@@ -55,7 +55,7 @@
             android:insetLeft="@dimen/field_between_buttons"
             android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_Div"
-            android:onClick="numbBtnClick"
+            android:onClick="operationClick"
             android:textSize="@dimen/numBtn" />
         <Button
             android:id="@+id/button_MULT"
@@ -64,7 +64,7 @@
             android:insetLeft="@dimen/field_between_buttons"
             android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_Mult"
-            android:onClick="numbBtnClick"
+            android:onClick="operationClick"
             android:textSize="@dimen/numBtn" />
         <Button
             android:id="@+id/button_BS"
@@ -73,7 +73,7 @@
             android:insetLeft="@dimen/field_between_buttons"
             android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_backS"
-            android:onClick="numbBtnClick"
+            android:onClick="backSpaceClick"
             android:textSize="@dimen/numBtn" />
         <Button
             android:id="@+id/button_7"
@@ -82,7 +82,7 @@
             android:insetLeft="@dimen/field_between_buttons"
             android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_7"
-            android:onClick="numbBtnClick"
+            android:onClick="numberBtnClick"
             android:textSize="@dimen/numBtn" />
         <Button
             android:id="@+id/button_8"
@@ -91,7 +91,7 @@
             android:insetLeft="@dimen/field_between_buttons"
             android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_8"
-            android:onClick="numbBtnClick"
+            android:onClick="numberBtnClick"
             android:textSize="@dimen/numBtn" />
         <Button
             android:id="@+id/button_9"
@@ -100,7 +100,7 @@
             android:insetLeft="@dimen/field_between_buttons"
             android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_9"
-            android:onClick="numbBtnClick"
+            android:onClick="numberBtnClick"
             android:textSize="@dimen/numBtn" />
         <Button
             android:id="@+id/button_Minus"
@@ -109,7 +109,7 @@
             android:insetLeft="@dimen/field_between_buttons"
             android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_Minus"
-            android:onClick="numbBtnClick"
+            android:onClick="operationClick"
             android:textSize="@dimen/numBtn" />
         <Button
             android:id="@+id/button_4"
@@ -118,7 +118,7 @@
             android:insetLeft="@dimen/field_between_buttons"
             android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_4"
-            android:onClick="numbBtnClick"
+            android:onClick="numberBtnClick"
             android:textSize="@dimen/numBtn" />
         <Button
             android:id="@+id/button_5"
@@ -127,7 +127,7 @@
             android:insetLeft="@dimen/field_between_buttons"
             android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_5"
-            android:onClick="numbBtnClick"
+            android:onClick="numberBtnClick"
             android:textSize="@dimen/numBtn" />
         <Button
             android:id="@+id/button_6"
@@ -136,7 +136,7 @@
             android:insetLeft="@dimen/field_between_buttons"
             android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_6"
-            android:onClick="numbBtnClick"
+            android:onClick="numberBtnClick"
             android:textSize="@dimen/numBtn" />
         <Button
             android:id="@+id/button_plus"
@@ -145,7 +145,7 @@
             android:insetLeft="@dimen/field_between_buttons"
             android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_Plus"
-            android:onClick="numbBtnClick"
+            android:onClick="operationClick"
             android:textSize="@dimen/numBtn" />
         <Button
             android:id="@+id/button_1"
@@ -154,7 +154,7 @@
             android:insetLeft="@dimen/field_between_buttons"
             android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_1"
-            android:onClick="numbBtnClick"
+            android:onClick="numberBtnClick"
             android:textSize="@dimen/numBtn" />
         <Button
             android:id="@+id/button_2"
@@ -163,7 +163,7 @@
             android:insetLeft="@dimen/field_between_buttons"
             android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_2"
-            android:onClick="numbBtnClick"
+            android:onClick="numberBtnClick"
             android:textSize="@dimen/numBtn" />
         <Button
             android:id="@+id/button_3"
@@ -172,7 +172,7 @@
             android:insetLeft="@dimen/field_between_buttons"
             android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_3"
-            android:onClick="numbBtnClick"
+            android:onClick="numberBtnClick"
             android:textSize="@dimen/numBtn" />
         <Button
             android:id="@+id/button_RESULT"
@@ -185,7 +185,7 @@
             android:insetLeft="@dimen/field_between_buttons"
             android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_result"
-            android:onClick="numbBtnClick"
+            android:onClick="onResultClick"
             android:textSize="@dimen/numBtn" />
         <Button
             android:id="@+id/button_0"
@@ -198,7 +198,7 @@
             android:insetLeft="@dimen/field_between_buttons"
             android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_0"
-            android:onClick="numbBtnClick"
+            android:onClick="numberBtnClick"
             android:textSize="@dimen/numBtn" />
         <Button
             android:id="@+id/button_point"
@@ -207,7 +207,7 @@
             android:insetLeft="@dimen/field_between_buttons"
             android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_point"
-            android:onClick="numbBtnClick"
+            android:onClick="pointBtnClick"
             android:textSize="@dimen/numBtn" />
     </GridLayout>
 
@@ -218,7 +218,7 @@
         app:layout_constraintBottom_toTopOf="@+id/gridLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/preText"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.448"
         app:srcCompat="@drawable/hummingbird" />
 
