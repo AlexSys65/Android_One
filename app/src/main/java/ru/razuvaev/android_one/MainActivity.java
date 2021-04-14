@@ -13,8 +13,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private TextView resultText, preResultText;
     private String actionsList = "/*+-";
-    private String partNumber = "0";
-    private List<Object> calculateList = new ArrayList<>();
     boolean mathOperationFlag = false;
 
 
@@ -27,85 +25,70 @@ public class MainActivity extends AppCompatActivity {
         resultText.setText("0");
         preResultText.setText("");
     }
+
     public void numberBtnClick(View v) {
         Button button = (Button) v;
-        if (resultText.getText().toString().equals("0") & button.getText().toString().equals("0")){return;}
-        if (resultText.getText().toString().equals("0")) {resultText.setText("");}
-        resultText.setText((resultText.getText().toString() + button.getText().toString()));
-        partNumber = partNumber + button.getText().toString();
-        mathOperationFlag = false;
-        if (calculateList.size() < 3) {
-            preResultText.setText(resultMethod(false, partNumber));
+        if (resultText.getText().toString().equals("0") & button.getText().toString().equals("0")) {
+            return;
         }
-    }
-    public void pointBtnClick(View v){
-        if (resultText.getText().toString().contains(".")) {return;}
-        resultText.setText((resultText.getText().toString() + "."));
-        partNumber = partNumber + ".";
+        if (resultText.getText().toString().equals("0")) {
+            resultText.setText("");
+        }
+        resultText.setText((resultText.getText().toString() + button.getText().toString()));
         mathOperationFlag = false;
+        preResultText.setText(ReversePolishNotation.transformationString(resultText.getText().toString()));
     }
-    public void operationClick(View v){
+
+    public void pointBtnClick(View v) {
+        if (resultText.getText().toString().contains(".")) {
+            return;
+        }
+        resultText.setText((resultText.getText().toString() + "."));
+        mathOperationFlag = false;
+        preResultText.setText(ReversePolishNotation.transformationString(resultText.getText().toString()));
+    }
+
+    public void operationClick(View v) {
         Button button = (Button) v;
         String action = button.getText().toString();
-
-        if (!mathOperationFlag){
-
+        if (!mathOperationFlag) {
             resultText.setText((resultText.getText().toString() + action));
         } else {
             resultText.setText(resultText.getText().toString().substring(0, resultText.getText().toString().length() - 1));
-
             resultText.setText((resultText.getText().toString() + action));
         }
         mathOperationFlag = true;
     }
-    public void onResultClick(View v){
-        if (calculateList.size() < 3) {return;}
+
+    public void onResultClick(View v) {
+       /* if (calculateList.size() < 3) {return;}
         preResultText.setText("");
-        resultText.setText(ReversePolishNotation.transformationString(calculateList));
+        resultText.setText(ReversePolishNotation.transformationString(calculateList));*/
     }
-    public void cancelClick(View v){
+
+    public void cancelClick(View v) {
         resultText.setText("0");
-        partNumber = "0";
-        calculateList.clear();
         preResultText.setText("");
         mathOperationFlag = false;
     }
+
     public void backSpaceClick(View v) {
         int lengthText = resultText.getText().toString().length() - 1;
         if (resultText.getText().toString().length() == 1) {
             resultText.setText("0");
-            partNumber = "0";
             preResultText.setText("");
             return;
         }
-        if (actionsList.contains(resultText.getText().toString().substring(lengthText - 1, lengthText))) {
+
+        mathOperationFlag = actionsList.contains(resultText.getText().toString().substring(lengthText - 1, lengthText));
+
+       /* if (actionsList.contains(resultText.getText().toString().substring(lengthText - 1, lengthText))) {
             mathOperationFlag = true;
         } else {
             mathOperationFlag = false;
-        }
+        }*/
         resultText.setText(resultText.getText().toString().substring(0, lengthText));
-        partNumber = resultText.getText().toString();
-    }
-    private String resultMethod(boolean flag, String partB){
-        Double number = null;
-        try {
-            number = Double.parseDouble(partB);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
-        if (calculateList.size() < 1 & flag) {
-            calculateList.add(number);
-            partNumber = "";
-            return partB;
-        }
-        if (actionsList.contains(calculateList.get(calculateList.size() - 1).toString())) {
-            calculateList.add(number);
-        } else {
-            calculateList.set(calculateList.size() - 1, number);
-        }
-        if (flag) {
-            partNumber = "";
-        }
-        return ReversePolishNotation.transformationString(calculateList);
+        preResultText.setText(ReversePolishNotation.transformationString(resultText.getText().toString()));
+
     }
 }

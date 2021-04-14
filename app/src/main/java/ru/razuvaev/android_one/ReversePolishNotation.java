@@ -9,27 +9,36 @@ import java.util.List;
 
 public class ReversePolishNotation {
 
-    public static String transformationString(List<Object> arithmeticExpression) {
-        HashMap<String, Integer> priority;
+    //public static String transformationString(List<Object> arithmeticExpression) {
+    public static String transformationString(String stringArithmeticExpression) {
 
-        if (arithmeticExpression.isEmpty()) {
-            return null;
+        if (stringArithmeticExpression.isEmpty()) {
+            return "";
         }
+        HashMap<String, Integer> priority;
         List<Object> outputStack = new ArrayList<>();
         List<String> actStack = new ArrayList<>();
         final String actions = "%^*/+-()";
         final String briefActions = "%^*/+-";
         int j;
         priority = new HashMap<>();
-        priority.put("%",5);
-        priority.put("^",4);
-        priority.put("*",3);
-        priority.put("/",3);
-        priority.put("+",2);
-        priority.put("-",2);
-        priority.put("(",1);
-        priority.put(")",1);
+        priority.put("%", 5);
+        priority.put("^", 4);
+        priority.put("*", 3);
+        priority.put("/", 3);
+        priority.put("+", 2);
+        priority.put("-", 2);
+        priority.put("(", 1);
+        priority.put(")", 1);
 
+        List<Object> arithmeticExpression = stringСonversion(stringArithmeticExpression, actions);
+
+        if (arithmeticExpression == null) {
+            return "";
+        }
+        if (arithmeticExpression.size() < 3) {
+            return "";
+        }
         for (Object o : arithmeticExpression) {
             if (briefActions.contains(arithmeticExpression.get(0).toString())) {
                 outputStack.add("0");
@@ -51,11 +60,13 @@ public class ReversePolishNotation {
                         actStack.remove(i);
                         break;
                     }
-                    if (priority.get(actStack.get(i)) < priority.get(o.toString())) {break;}
+                    if (priority.get(actStack.get(i)) < priority.get(o.toString())) {
+                        break;
+                    }
                     outputStack.add(actStack.get(i));
                     j++;
                 }
-                while (j >= 0){
+                while (j >= 0) {
                     actStack.remove(actStack.size() - 1);
                     j--;
                 }
@@ -75,44 +86,73 @@ public class ReversePolishNotation {
         return calc(outputStack);
     }
 
+    private static List<Object> stringСonversion(String stringArithmeticExpression, String actions) {
+        List<Object> arithmeticExpression = new ArrayList<>();
+        int indexBegin = 0;
+        Double number;
+
+        for (int i = 0; i < stringArithmeticExpression.length(); i++) {
+            if (actions.contains(Character.toString(stringArithmeticExpression.charAt(i)))) {
+                try {
+                    number = Double.parseDouble(stringArithmeticExpression.substring(indexBegin, i));
+                    arithmeticExpression.add(number);
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
+                indexBegin = i + 1;
+                arithmeticExpression.add(stringArithmeticExpression.substring(i, indexBegin));
+            }
+        }
+        if (indexBegin < stringArithmeticExpression.length()) {
+            if (!actions.contains(stringArithmeticExpression.substring(indexBegin))) {
+                try {
+                    number = Double.parseDouble(stringArithmeticExpression.substring(indexBegin));
+                    arithmeticExpression.add(number);
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                arithmeticExpression.add(stringArithmeticExpression.substring(indexBegin));
+            }
+        }
+        return arithmeticExpression;
+    }
+
     public static String calc(List<Object> expRPN) {
         String actions = "%^*/+-";
         String resultString = "";
         List<Object> linkedListRPN = new LinkedList<>(expRPN);
         int i = 0;
-        //final byte outputSize = 13;
-
-        //linkedListRPN.addAll(expRPN);
 
         try {
             while (linkedListRPN.size() > 1) {
                 if (actions.contains(linkedListRPN.get(i).toString())) {
                     switch (linkedListRPN.get(i).toString()) {
-                        case ("%") :{
-                            linkedListRPN.set(i - 2, (Double) linkedListRPN.get(i-2) / 100 * (Double) linkedListRPN.get(i - 1));
+                        case ("%"): {
+                            linkedListRPN.set(i - 2, (Double) linkedListRPN.get(i - 2) / 100 * (Double) linkedListRPN.get(i - 1));
                             break;
                         }
-                        case ("^") :{
-                            linkedListRPN.set(i - 2, Math.pow((Double) linkedListRPN.get(i-2), (Double) linkedListRPN.get(i - 1)));
+                        case ("^"): {
+                            linkedListRPN.set(i - 2, Math.pow((Double) linkedListRPN.get(i - 2), (Double) linkedListRPN.get(i - 1)));
                             break;
                         }
-                        case ("*") :{
-                            linkedListRPN.set(i - 2, (Double) linkedListRPN.get(i-2) * (Double) linkedListRPN.get(i - 1));
+                        case ("*"): {
+                            linkedListRPN.set(i - 2, (Double) linkedListRPN.get(i - 2) * (Double) linkedListRPN.get(i - 1));
                             break;
                         }
-                        case ("/") :{
+                        case ("/"): {
                             if ((Double) linkedListRPN.get(i - 1) == 0) {
                                 return "Деление на 0";
                             }
-                            linkedListRPN.set(i - 2, (Double) linkedListRPN.get(i-2) / (Double) linkedListRPN.get(i - 1));
+                            linkedListRPN.set(i - 2, (Double) linkedListRPN.get(i - 2) / (Double) linkedListRPN.get(i - 1));
                             break;
                         }
-                        case ("+") :{
-                            linkedListRPN.set(i - 2, (Double) linkedListRPN.get(i-2) + (Double) linkedListRPN.get(i - 1));
+                        case ("+"): {
+                            linkedListRPN.set(i - 2, (Double) linkedListRPN.get(i - 2) + (Double) linkedListRPN.get(i - 1));
                             break;
                         }
-                        case ("-") :{
-                            linkedListRPN.set(i - 2, (Double) linkedListRPN.get(i-2) - (Double) linkedListRPN.get(i - 1));
+                        case ("-"): {
+                            linkedListRPN.set(i - 2, (Double) linkedListRPN.get(i - 2) - (Double) linkedListRPN.get(i - 1));
                             break;
                         }
                     }
@@ -126,8 +166,8 @@ public class ReversePolishNotation {
             Log.e("TAGNum", "calc: ", e);
         }
 
-        resultString = linkedListRPN.toString().substring(1,linkedListRPN.toString().indexOf("]"));
-        if ((Double) linkedListRPN.get(0)%1 == 0) {
+        resultString = linkedListRPN.toString().substring(1, linkedListRPN.toString().indexOf("]"));
+        if ((Double) linkedListRPN.get(0) % 1 == 0) {
             resultString = resultString.substring(0, resultString.indexOf("."));
         }
 
