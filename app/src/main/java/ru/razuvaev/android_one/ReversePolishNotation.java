@@ -115,6 +115,10 @@ public class ReversePolishNotation {
                 arithmeticExpression.add(stringArithmeticExpression.substring(indexBegin));
             }
         }
+        int sizeList = arithmeticExpression.size() - 1;
+        if (arithmeticExpression.get(sizeList) instanceof String){
+            arithmeticExpression.remove(sizeList);
+        }
         return arithmeticExpression;
     }
 

@@ -12,7 +12,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private TextView resultText, preResultText;
-    private String actionsList = "/*+-";
     boolean mathOperationFlag = false;
 
 
@@ -61,9 +60,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onResultClick(View v) {
-       /* if (calculateList.size() < 3) {return;}
+        String arithmeticExpr = ReversePolishNotation.transformationString(resultText.getText().toString());
+        if (arithmeticExpr.isEmpty()) {return;}
         preResultText.setText("");
-        resultText.setText(ReversePolishNotation.transformationString(calculateList));*/
+        resultText.setText(arithmeticExpr);
     }
 
     public void cancelClick(View v) {
@@ -73,22 +73,18 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void backSpaceClick(View v) {
+        final String actionsList = "/*+-";
         int lengthText = resultText.getText().toString().length() - 1;
+        String resultString;
+
         if (resultText.getText().toString().length() == 1) {
             resultText.setText("0");
             preResultText.setText("");
             return;
         }
-
         mathOperationFlag = actionsList.contains(resultText.getText().toString().substring(lengthText - 1, lengthText));
-
-       /* if (actionsList.contains(resultText.getText().toString().substring(lengthText - 1, lengthText))) {
-            mathOperationFlag = true;
-        } else {
-            mathOperationFlag = false;
-        }*/
-        resultText.setText(resultText.getText().toString().substring(0, lengthText));
-        preResultText.setText(ReversePolishNotation.transformationString(resultText.getText().toString()));
-
+        resultString = resultText.getText().toString().substring(0, lengthText);
+        resultText.setText(resultString);
+        preResultText.setText(ReversePolishNotation.transformationString(resultString));
     }
 }
