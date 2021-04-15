@@ -9,7 +9,6 @@ import java.util.List;
 
 public class ReversePolishNotation {
 
-    //public static String transformationString(List<Object> arithmeticExpression) {
     public static String transformationString(String stringArithmeticExpression) {
 
         if (stringArithmeticExpression.isEmpty()) {
@@ -115,9 +114,9 @@ public class ReversePolishNotation {
                 arithmeticExpression.add(stringArithmeticExpression.substring(indexBegin));
             }
         }
-        int sizeList = arithmeticExpression.size() - 1;
-        if (arithmeticExpression.get(sizeList) instanceof String){
-            arithmeticExpression.remove(sizeList);
+        int indexLastElement = arithmeticExpression.size() - 1;
+        if (arithmeticExpression.get(indexLastElement) instanceof String) {
+            arithmeticExpression.remove(indexLastElement);
         }
         return arithmeticExpression;
     }

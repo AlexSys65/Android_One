@@ -12,7 +12,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private TextView resultText, preResultText;
-    boolean mathOperationFlag = false;
+    private boolean mathOperationFlag = false;
+    private boolean pointFlag = false;
 
 
     @Override
@@ -27,43 +28,50 @@ public class MainActivity extends AppCompatActivity {
 
     public void numberBtnClick(View v) {
         Button button = (Button) v;
-        if (resultText.getText().toString().equals("0") & button.getText().toString().equals("0")) {
+        String stringResult = resultText.getText().toString();
+        if (stringResult.equals("0") & button.getText().toString().equals("0")) {
             return;
         }
-        if (resultText.getText().toString().equals("0")) {
-            resultText.setText("");
+        if (stringResult.equals("0")) {
+            stringResult = "";
         }
-        resultText.setText((resultText.getText().toString() + button.getText().toString()));
+        stringResult = stringResult + button.getText().toString();
+        resultText.setText(stringResult);
         mathOperationFlag = false;
-        preResultText.setText(ReversePolishNotation.transformationString(resultText.getText().toString()));
+        preResultText.setText(ReversePolishNotation.transformationString(stringResult));
     }
 
     public void pointBtnClick(View v) {
-        if (resultText.getText().toString().contains(".")) {
+        String stringResult = resultText.getText().toString();
+        if (pointFlag) {
             return;
         }
-        resultText.setText((resultText.getText().toString() + "."));
+        stringResult = stringResult + ".";
+        resultText.setText((stringResult));
         mathOperationFlag = false;
-        preResultText.setText(ReversePolishNotation.transformationString(resultText.getText().toString()));
+        pointFlag = true;
+        preResultText.setText(ReversePolishNotation.transformationString(stringResult));
     }
 
     public void operationClick(View v) {
         Button button = (Button) v;
-        String action = button.getText().toString();
-        if (!mathOperationFlag) {
-            resultText.setText((resultText.getText().toString() + action));
-        } else {
-            resultText.setText(resultText.getText().toString().substring(0, resultText.getText().toString().length() - 1));
-            resultText.setText((resultText.getText().toString() + action));
+        String stringResult = resultText.getText().toString();
+        if (mathOperationFlag) {
+            stringResult = stringResult.substring(0, stringResult.length() - 1);
         }
+        resultText.setText((stringResult + button.getText().toString()));
         mathOperationFlag = true;
+        pointFlag = false;
     }
 
     public void onResultClick(View v) {
         String arithmeticExpr = ReversePolishNotation.transformationString(resultText.getText().toString());
-        if (arithmeticExpr.isEmpty()) {return;}
+        if (arithmeticExpr.isEmpty()) {
+            return;
+        }
         preResultText.setText("");
         resultText.setText(arithmeticExpr);
+        pointFlag = false;
     }
 
     public void cancelClick(View v) {
@@ -74,17 +82,28 @@ public class MainActivity extends AppCompatActivity {
 
     public void backSpaceClick(View v) {
         final String actionsList = "/*+-";
-        int lengthText = resultText.getText().toString().length() - 1;
-        String resultString;
-
-        if (resultText.getText().toString().length() == 1) {
+        String stringResult = resultText.getText().toString();
+        int lengthText = stringResult.length() - 1;
+        if (lengthText == 0) {
             resultText.setText("0");
             preResultText.setText("");
             return;
         }
-        mathOperationFlag = actionsList.contains(resultText.getText().toString().substring(lengthText - 1, lengthText));
-        resultString = resultText.getText().toString().substring(0, lengthText);
-        resultText.setText(resultString);
-        preResultText.setText(ReversePolishNotation.transformationString(resultString));
+        mathOperationFlag = actionsList.contains(stringResult.substring(lengthText - 1, lengthText));
+        stringResult = stringResult.substring(0, lengthText);
+        lengthText--;
+        while (!actionsList.contains(Character.toString(stringResult.charAt(lengthText)))) {
+            if (Character.toString(stringResult.charAt(lengthText)).equals(".")) {
+                pointFlag = true;
+                break;
+            }
+            pointFlag = false;
+            lengthText--;
+            if (lengthText < 0) {
+                break;
+            }
+        }
+        resultText.setText(stringResult);
+        preResultText.setText(ReversePolishNotation.transformationString(stringResult));
     }
 }
