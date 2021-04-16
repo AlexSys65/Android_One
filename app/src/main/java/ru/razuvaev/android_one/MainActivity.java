@@ -1,5 +1,6 @@
 package ru.razuvaev.android_one;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -12,20 +13,34 @@ public class MainActivity extends AppCompatActivity {
     private boolean mathOperationFlag = false;
     private boolean pointFlag = false;
 
+    private static final String KEY_RESULT = "RESULT";
+    private static final String KEY_PRE_RESULT = "PRE_RESULT";
+    private static final String KEY_MATH_FLAG = "MATH_FLAG";
+    private static final String KEY_POINT_FLAG = "POINT_FLAG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        resultText = (TextView) findViewById(R.id.resultText);
-        preResultText = (TextView) findViewById(R.id.preText);
+        resultText = findViewById(R.id.resultText);
+        preResultText = findViewById(R.id.preText);
         resultText.setText("0");
         preResultText.setText("");
+        if (savedInstanceState != null) {
+            resultText.setText(savedInstanceState.getString(KEY_RESULT));
+            preResultText.setText(savedInstanceState.getString(KEY_PRE_RESULT));
+            mathOperationFlag = savedInstanceState.getBoolean(KEY_MATH_FLAG);
+            pointFlag = savedInstanceState.getBoolean(KEY_POINT_FLAG);
+        }
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle instanceState) {
+    protected void onSaveInstanceState(@NonNull Bundle instanceState) {
         super.onSaveInstanceState(instanceState);
+        instanceState.putString(KEY_RESULT, resultText.getText().toString());
+        instanceState.putString(KEY_PRE_RESULT, preResultText.getText().toString());
+        instanceState.putBoolean(KEY_MATH_FLAG, mathOperationFlag);
+        instanceState.putBoolean(KEY_POINT_FLAG, pointFlag);
     }
 
     public void numberBtnClick(View v) {

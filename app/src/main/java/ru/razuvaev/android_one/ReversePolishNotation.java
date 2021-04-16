@@ -32,7 +32,7 @@ public class ReversePolishNotation {
 
         List<Object> arithmeticExpression = stringСonversion(stringArithmeticExpression, actions);
 
-        if (arithmeticExpression == null) {
+        if (arithmeticExpression.isEmpty()) {
             return "";
         }
         if (arithmeticExpression.size() < 3) {

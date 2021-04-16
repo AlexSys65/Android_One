@@ -236,7 +236,8 @@
         app:layout_constraintLeft_toRightOf="@+id/gridLayout"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:srcCompat="@drawable/hummingbird" />
+        app:srcCompat="@drawable/hummingbird"
+        tools:ignore="ContentDescription" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
