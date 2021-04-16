@@ -23,6 +23,11 @@ public class MainActivity extends AppCompatActivity {
         preResultText.setText("");
     }
 
+    @Override
+    protected void onSaveInstanceState(Bundle instanceState) {
+        super.onSaveInstanceState(instanceState);
+    }
+
     public void numberBtnClick(View v) {
         Button button = (Button) v;
         String stringResult = resultText.getText().toString();

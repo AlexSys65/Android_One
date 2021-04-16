@@ -3,4 +3,7 @@
     <dimen name="resultScreen">44sp</dimen>
     <dimen name="preScreen">34sp</dimen>
     <dimen name="numBtn">40sp</dimen>
+    <dimen name="land_resultScreen">44sp</dimen>
+    <dimen name="land_preScreen">34sp</dimen>
+    <dimen name="land_numBtn">25sp</dimen>
 </resources>
