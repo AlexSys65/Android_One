@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="cancel_btn">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:backgroundTint">@color/colorButCancel</item>
+        <item name="android:insetLeft">@dimen/field_between_buttons</item>
+        <item name="android:insetRight">@dimen/field_between_buttons</item>
+        <item name="android:textSize">@dimen/numBtn</item>
+    </style>
+
+    <style name="actions_btn">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:backgroundTint">@color/colorAction</item>
+        <item name="android:insetLeft">@dimen/field_between_buttons</item>
+        <item name="android:insetRight">@dimen/field_between_buttons</item>
+        <item name="android:textSize">@dimen/numBtn</item>
+    </style>
+
+    <style name="number_btn">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:backgroundTint">@color/colorNumberButton</item>
+        <item name="android:insetLeft">@dimen/field_between_buttons</item>
+        <item name="android:insetRight">@dimen/field_between_buttons</item>
+        <item name="android:textSize">@dimen/numBtn</item>
+    </style>
+</resources>

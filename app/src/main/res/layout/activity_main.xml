@@ -39,200 +39,110 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_CLEAR"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorButCancel"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_clear"
             android:onClick="cancelClick"
-            android:textSize="@dimen/numBtn" />
-        <Button
+            style="@style/cancel_btn" />
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_DIV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorAction"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_Div"
             android:onClick="operationClick"
-            android:textSize="@dimen/numBtn" />
-        <Button
+            style="@style/actions_btn" />
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_MULT"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorAction"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_Mult"
             android:onClick="operationClick"
-            android:textSize="@dimen/numBtn" />
-        <Button
+            style="@style/actions_btn" />
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_BS"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorAction"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_backS"
             android:onClick="backSpaceClick"
-            android:textSize="@dimen/numBtn" />
-        <Button
+            style="@style/actions_btn" />
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorNumberButton"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_7"
             android:onClick="numberBtnClick"
-            android:textSize="@dimen/numBtn" />
-        <Button
+            style="@style/number_btn" />
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorNumberButton"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_8"
             android:onClick="numberBtnClick"
-            android:textSize="@dimen/numBtn" />
-        <Button
+            style="@style/number_btn"/>
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorNumberButton"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_9"
             android:onClick="numberBtnClick"
-            android:textSize="@dimen/numBtn" />
-        <Button
+            style="@style/number_btn" />
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_Minus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorAction"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_Minus"
             android:onClick="operationClick"
-            android:textSize="@dimen/numBtn" />
-        <Button
+            style="@style/actions_btn" />
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorNumberButton"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_4"
             android:onClick="numberBtnClick"
-            android:textSize="@dimen/numBtn" />
-        <Button
+            style="@style/number_btn" />
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorNumberButton"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_5"
             android:onClick="numberBtnClick"
-            android:textSize="@dimen/numBtn" />
-        <Button
+            style="@style/number_btn" />
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorNumberButton"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_6"
             android:onClick="numberBtnClick"
-            android:textSize="@dimen/numBtn" />
-        <Button
+            style="@style/number_btn" />
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_plus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorAction"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_Plus"
             android:onClick="operationClick"
-            android:textSize="@dimen/numBtn" />
-        <Button
+            style="@style/actions_btn" />
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorNumberButton"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_1"
             android:onClick="numberBtnClick"
-            android:textSize="@dimen/numBtn" />
-        <Button
+            style="@style/number_btn" />
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorNumberButton"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_2"
             android:onClick="numberBtnClick"
-            android:textSize="@dimen/numBtn" />
-        <Button
+            style="@style/number_btn" />
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorNumberButton"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_3"
             android:onClick="numberBtnClick"
-            android:textSize="@dimen/numBtn" />
-        <Button
+            style="@style/number_btn" />
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_RESULT"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorAction"
             android:layout_row="3"
             android:layout_rowSpan="2"
             android:layout_column="3"
             android:layout_gravity="fill"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_result"
             android:onClick="onResultClick"
-            android:textSize="@dimen/numBtn" />
-        <Button
+            style="@style/actions_btn" />
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorNumberButton"
             android:layout_row="4"
             android:layout_column="0"
             android:layout_columnSpan="2"
             android:layout_gravity="fill"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_0"
             android:onClick="numberBtnClick"
-            android:textSize="@dimen/numBtn" />
-        <Button
+            style="@style/number_btn" />
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_point"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorNumberButton"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
             android:text="@string/btn_point"
             android:onClick="pointBtnClick"
-            android:textSize="@dimen/numBtn" />
+            style="@style/number_btn" />
     </GridLayout>
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="190dp"
-        android:layout_height="128dp"
+        android:layout_width="144dp"
+        android:layout_height="101dp"
         app:layout_constraintBottom_toTopOf="@+id/gridLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
