@@ -1,4 +1,4 @@
-package ru.razuvaev.android_one;
+package ru.razuvaev.android_one.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,6 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import ru.razuvaev.android_one.MainContract;
+import ru.razuvaev.android_one.R;
+import ru.razuvaev.android_one.model.ReversePolishNotation;
 
 public class MainActivity extends AppCompatActivity {
     private TextView resultText, preResultText;
@@ -24,14 +28,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         resultText = findViewById(R.id.resultText);
         preResultText = findViewById(R.id.preText);
-        resultText.setText("0");
-        preResultText.setText("");
         if (savedInstanceState != null) {
             resultText.setText(savedInstanceState.getString(KEY_RESULT));
             preResultText.setText(savedInstanceState.getString(KEY_PRE_RESULT));
             mathOperationFlag = savedInstanceState.getBoolean(KEY_MATH_FLAG);
             pointFlag = savedInstanceState.getBoolean(KEY_POINT_FLAG);
+        } else {
+            resultText.setText("0");
+            preResultText.setText("");
         }
+        //findViewById(R.id.button_0).setOnClickListener();
     }
 
     @Override
@@ -123,4 +129,7 @@ public class MainActivity extends AppCompatActivity {
         resultText.setText(stringResult);
         preResultText.setText(ReversePolishNotation.transformationString(stringResult));
     }
+
+
+
 }

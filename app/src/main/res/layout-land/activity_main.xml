@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:layout_margin="@dimen/field_constraint_layout">
+    android:layout_margin="@dimen/field_constraint_layout"
+    tools:context=".view.MainActivity">
 
     <TextView
         android:id="@+id/resultText"
@@ -30,212 +29,166 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/resultText" />
 
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/switch1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/switch_theme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/preText" />
+
     <GridLayout
         android:id="@+id/gridLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:columnCount="4"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent">
-        <Button
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_CLEAR"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorButCancel"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
+            style="@style/cancel_btn_land"
             android:onClick="cancelClick"
             android:text="@string/btn_clear"
-            android:textSize="@dimen/land_numBtn" />
-        <Button
+            app:cornerRadius="@dimen/radius_numBtn" />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_DIV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorAction"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
+            style="@style/action_btn_land"
+            android:onClick="operationClick"
             android:text="@string/btn_Div"
-            android:onClick="operationClick"
-            android:textSize="@dimen/land_numBtn" />
-        <Button
+            app:cornerRadius="@dimen/radius_numBtn" />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_MULT"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorAction"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
+            style="@style/action_btn_land"
+            android:onClick="operationClick"
             android:text="@string/btn_Mult"
-            android:onClick="operationClick"
-            android:textSize="@dimen/land_numBtn" />
-        <Button
+            app:cornerRadius="@dimen/radius_numBtn" />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_BS"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorAction"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
-            android:text="@string/btn_backS"
+            style="@style/action_btn_land"
             android:onClick="backSpaceClick"
-            android:textSize="@dimen/land_numBtn" />
-        <Button
+            android:text="@string/btn_backS"
+            app:cornerRadius="@dimen/radius_numBtn" />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorNumberButton"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
+            style="@style/number_btn_land"
+            android:onClick="numberBtnClick"
             android:text="@string/btn_7"
-            android:onClick="numberBtnClick"
-            android:textSize="@dimen/land_numBtn" />
-        <Button
+            app:cornerRadius="@dimen/radius_numBtn" />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorNumberButton"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
+            style="@style/number_btn_land"
+            android:onClick="numberBtnClick"
             android:text="@string/btn_8"
-            android:onClick="numberBtnClick"
-            android:textSize="@dimen/land_numBtn" />
-        <Button
+            app:cornerRadius="@dimen/radius_numBtn" />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorNumberButton"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
+            style="@style/number_btn_land"
+            android:onClick="numberBtnClick"
             android:text="@string/btn_9"
-            android:onClick="numberBtnClick"
-            android:textSize="@dimen/land_numBtn" />
-        <Button
+            app:cornerRadius="@dimen/radius_numBtn" />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_Minus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorAction"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
+            style="@style/action_btn_land"
+            android:onClick="operationClick"
             android:text="@string/btn_Minus"
-            android:onClick="operationClick"
-            android:textSize="@dimen/land_numBtn" />
-       <Button
+            app:cornerRadius="@dimen/radius_numBtn" />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorNumberButton"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
+            style="@style/number_btn_land"
+            android:onClick="numberBtnClick"
             android:text="@string/btn_4"
-            android:onClick="numberBtnClick"
-            android:textSize="@dimen/land_numBtn" />
-        <Button
+            app:cornerRadius="@dimen/radius_numBtn" />
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorNumberButton"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
+            style="@style/number_btn_land"
+            android:onClick="numberBtnClick"
             android:text="@string/btn_5"
-            android:onClick="numberBtnClick"
-            android:textSize="@dimen/land_numBtn" />
-        <Button
+            app:cornerRadius="@dimen/radius_numBtn"/>
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorNumberButton"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
+            style="@style/number_btn_land"
+            android:onClick="numberBtnClick"
             android:text="@string/btn_6"
-            android:onClick="numberBtnClick"
-            android:textSize="@dimen/land_numBtn" />
-        <Button
+            app:cornerRadius="@dimen/radius_numBtn"/>
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_plus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorAction"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
-            android:text="@string/btn_Plus"
+            style="@style/action_btn_land"
             android:onClick="operationClick"
-            android:textSize="@dimen/land_numBtn" />
-        <Button
+            android:text="@string/btn_Plus"
+            app:cornerRadius="@dimen/radius_numBtn"/>
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorNumberButton"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
+            style="@style/number_btn_land"
+            android:onClick="numberBtnClick"
             android:text="@string/btn_1"
-            android:onClick="numberBtnClick"
-            android:textSize="@dimen/land_numBtn" />
-        <Button
+            app:cornerRadius="@dimen/radius_numBtn"/>
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorNumberButton"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
+            style="@style/number_btn_land"
+            android:onClick="numberBtnClick"
             android:text="@string/btn_2"
-            android:onClick="numberBtnClick"
-            android:textSize="@dimen/land_numBtn" />
-        <Button
+            app:cornerRadius="@dimen/radius_numBtn"/>
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorNumberButton"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
-            android:text="@string/btn_3"
+            style="@style/number_btn_land"
             android:onClick="numberBtnClick"
-            android:textSize="@dimen/land_numBtn" />
-        <Button
+            android:text="@string/btn_3"
+            app:cornerRadius="@dimen/radius_numBtn"/>
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_RESULT"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorAction"
+            style="@style/action_btn_land"
             android:layout_row="3"
-            android:layout_column="3"
             android:layout_rowSpan="2"
+            android:layout_column="3"
             android:layout_gravity="fill"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
-            android:text="@string/btn_result"
             android:onClick="onResultClick"
-            android:textSize="@dimen/land_numBtn" />
-        <Button
+            android:text="@string/btn_result"
+            app:cornerRadius="@dimen/radius_numBtn"/>
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorNumberButton"
+            style="@style/number_btn_land"
             android:layout_row="4"
             android:layout_column="0"
             android:layout_columnSpan="2"
             android:layout_gravity="fill"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
-            android:text="@string/btn_0"
             android:onClick="numberBtnClick"
-            android:textSize="@dimen/land_numBtn" />
-        <Button
+            android:text="@string/btn_0"
+            app:cornerRadius="@dimen/radius_numBtn"/>
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_point"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/colorNumberButton"
-            android:insetLeft="@dimen/field_between_buttons"
-            android:insetRight="@dimen/field_between_buttons"
-            android:text="@string/btn_point"
+            style="@style/number_btn_land"
             android:onClick="pointBtnClick"
-            android:textSize="@dimen/land_numBtn" />
+            android:text="@string/btn_point"
+            app:cornerRadius="@dimen/radius_numBtn"/>
     </GridLayout>
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="144dp"
         android:layout_height="101dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/gridLayout"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:srcCompat="@drawable/hummingbird"
         tools:ignore="ContentDescription" />
 

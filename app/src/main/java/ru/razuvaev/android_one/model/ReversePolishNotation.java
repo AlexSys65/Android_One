@@ -1,4 +1,4 @@
-package ru.razuvaev.android_one;
+package ru.razuvaev.android_one.model;
 
 import android.util.Log;
 
