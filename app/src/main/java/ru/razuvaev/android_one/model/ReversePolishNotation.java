@@ -7,70 +7,76 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-public class ReversePolishNotation {
+import ru.razuvaev.android_one.MainContract;
 
-    public static String transformationString(String stringArithmeticExpression) {
+public class ReversePolishNotation implements MainContract.Model {
+
+    private static final HashMap<String, Integer> priority = new HashMap<String, Integer>() {
+        {
+            put("%", 5);
+            put("^", 4);
+            put("*", 3);
+            put("/", 3);
+            put("+", 2);
+            put("-", 2);
+            put("(", 1);
+            put(")", 1);
+        }
+    };
+    private static final String actions = "%^*/+-()";
+    private static final String briefActions = "%^*/+-";
+
+    public static String calculateExpression(String stringArithmeticExpression) {
 
         if (stringArithmeticExpression.isEmpty()) {
             return "";
         }
-        HashMap<String, Integer> priority;
-        List<Object> outputStack = new ArrayList<>();
-        List<String> actStack = new ArrayList<>();
-        final String actions = "%^*/+-()";
-        final String briefActions = "%^*/+-";
-        int j;
-        priority = new HashMap<>();
-        priority.put("%", 5);
-        priority.put("^", 4);
-        priority.put("*", 3);
-        priority.put("/", 3);
-        priority.put("+", 2);
-        priority.put("-", 2);
-        priority.put("(", 1);
-        priority.put(")", 1);
-
-        List<Object> arithmeticExpression = stringСonversion(stringArithmeticExpression, actions);
-
+        List<Object> arithmeticExpression = stringConversion(stringArithmeticExpression);
         if (arithmeticExpression.isEmpty()) {
             return "";
         }
         if (arithmeticExpression.size() < 3) {
             return "";
         }
+        int j;
+        List<Object> outputStack = new ArrayList<>();
+        List<String> actStack = new ArrayList<>();
         for (Object o : arithmeticExpression) {
             if (briefActions.contains(arithmeticExpression.get(0).toString())) {
                 outputStack.add("0");
                 continue;
             }
-            if (actions.contains(o.toString())) {
+            String strOperation = o.toString();
+
+            if (actions.contains(strOperation)) {
                 j = -1;
-                if (actStack.isEmpty() | o.toString().equals("(")) {
-                    actStack.add(o.toString());
+                if (actStack.isEmpty() | strOperation.equals("(")) {
+                    actStack.add(strOperation);
                     continue;
                 }
                 for (int i = actStack.size() - 1; i >= 0; i--) {
-                    if (o.toString().equals(")")) {
+                    String action = actStack.get(i);
+                    if (strOperation.equals(")")) {
                         while (!actStack.get(i).equals("(")) {
-                            outputStack.add(actStack.get(i));
+                            outputStack.add(action);
                             i--;
                             j++;
                         }
                         actStack.remove(i);
                         break;
                     }
-                    if (priority.get(actStack.get(i)) < priority.get(o.toString())) {
+                    if (priority.get(action) < priority.get(strOperation)) {
                         break;
                     }
-                    outputStack.add(actStack.get(i));
+                    outputStack.add(action);
                     j++;
                 }
                 while (j >= 0) {
                     actStack.remove(actStack.size() - 1);
                     j--;
                 }
-                if (!o.toString().equals(")")) {
-                    actStack.add(o.toString());
+                if (!strOperation.equals(")")) {
+                    actStack.add(strOperation);
                 }
             } else {
                 outputStack.add(o);
@@ -85,7 +91,7 @@ public class ReversePolishNotation {
         return calc(outputStack);
     }
 
-    private static List<Object> stringСonversion(String stringArithmeticExpression, String actions) {
+    private static List<Object> stringConversion(String stringArithmeticExpression) {
         List<Object> arithmeticExpression = new ArrayList<>();
         int indexBegin = 0;
         Double number;

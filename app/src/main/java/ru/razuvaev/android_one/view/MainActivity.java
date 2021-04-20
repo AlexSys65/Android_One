@@ -11,8 +11,12 @@ import android.widget.TextView;
 import ru.razuvaev.android_one.MainContract;
 import ru.razuvaev.android_one.R;
 import ru.razuvaev.android_one.model.ReversePolishNotation;
+import ru.razuvaev.android_one.presenter.Manager;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainContract.ViewText {
+
+    private Manager manager;
+
     private TextView resultText, preResultText;
     private boolean mathOperationFlag = false;
     private boolean pointFlag = false;
@@ -26,18 +30,78 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        manager = new Manager(this, new ReversePolishNotation());
+
         resultText = findViewById(R.id.resultText);
         preResultText = findViewById(R.id.preText);
-        if (savedInstanceState != null) {
+        if (savedInstanceState == null) {
+            resultText.setText("0");
+            preResultText.setText("");
+        } else {
             resultText.setText(savedInstanceState.getString(KEY_RESULT));
             preResultText.setText(savedInstanceState.getString(KEY_PRE_RESULT));
             mathOperationFlag = savedInstanceState.getBoolean(KEY_MATH_FLAG);
             pointFlag = savedInstanceState.getBoolean(KEY_POINT_FLAG);
-        } else {
-            resultText.setText("0");
-            preResultText.setText("");
         }
-        //findViewById(R.id.button_0).setOnClickListener();
+        findViewById(R.id.button_0).setOnClickListener(v -> {
+            manager.numberBtnClick(resultText.getText().toString(),"0");
+        });
+        findViewById(R.id.button_1).setOnClickListener(v -> {
+            manager.numberBtnClick(resultText.getText().toString(),"1");
+        });
+        findViewById(R.id.button_2).setOnClickListener(v -> {
+            manager.numberBtnClick(resultText.getText().toString(),"2");
+        });
+        findViewById(R.id.button_3).setOnClickListener(v -> {
+            manager.numberBtnClick(resultText.getText().toString(),"3");
+        });
+        findViewById(R.id.button_4).setOnClickListener(v -> {
+            manager.numberBtnClick(resultText.getText().toString(),"4");
+        });
+        findViewById(R.id.button_5).setOnClickListener(v -> {
+            manager.numberBtnClick(resultText.getText().toString(),"5");
+        });
+        findViewById(R.id.button_6).setOnClickListener(v -> {
+            manager.numberBtnClick(resultText.getText().toString(),"6");
+        });
+        findViewById(R.id.button_7).setOnClickListener(v -> {
+            manager.numberBtnClick(resultText.getText().toString(),"7");
+        });
+        findViewById(R.id.button_8).setOnClickListener(v -> {
+            manager.numberBtnClick(resultText.getText().toString(),"8");
+        });
+        findViewById(R.id.button_9).setOnClickListener(v -> {
+            manager.numberBtnClick(resultText.getText().toString(),"9");
+        });
+        findViewById(R.id.button_point).setOnClickListener(v -> {
+            manager.pointBtnClick(resultText.getText().toString());
+        });
+
+        findViewById(R.id.button_Minus).setOnClickListener(v -> {
+            manager.operationClick(resultText.getText().toString(),"-");
+        });
+        findViewById(R.id.button_plus).setOnClickListener(v -> {
+            manager.operationClick(resultText.getText().toString(),"+");
+        });
+        findViewById(R.id.button_MULT).setOnClickListener(v -> {
+            manager.operationClick(resultText.getText().toString(),"*");
+        });
+        findViewById(R.id.button_DIV).setOnClickListener(v -> {
+            manager.operationClick(resultText.getText().toString(),"/");
+        });
+
+        findViewById(R.id.button_RESULT).setOnClickListener(v -> {
+            manager.onResultClick(resultText.getText().toString());
+        });
+
+        findViewById(R.id.button_CLEAR).setOnClickListener(v -> {
+            manager.cancelClick();
+        });
+
+        findViewById(R.id.button_BS).setOnClickListener(v -> {
+            manager.backSpaceClick(resultText.getText().toString());
+        });
     }
 
     @Override
@@ -49,87 +113,9 @@ public class MainActivity extends AppCompatActivity {
         instanceState.putBoolean(KEY_POINT_FLAG, pointFlag);
     }
 
-    public void numberBtnClick(View v) {
-        Button button = (Button) v;
-        String stringResult = resultText.getText().toString();
-        if (stringResult.equals("0") & button.getText().toString().equals("0")) {
-            return;
-        }
-        if (stringResult.equals("0")) {
-            stringResult = "";
-        }
-        stringResult = stringResult + button.getText().toString();
-        resultText.setText(stringResult);
-        mathOperationFlag = false;
-        preResultText.setText(ReversePolishNotation.transformationString(stringResult));
+ @Override
+    public void ShowText(String result, String preResult) {
+        resultText.setText(result);
+        preResultText.setText(preResult);
     }
-
-    public void pointBtnClick(View v) {
-        String stringResult = resultText.getText().toString();
-        if (pointFlag) {
-            return;
-        }
-        stringResult = stringResult + ".";
-        resultText.setText((stringResult));
-        mathOperationFlag = false;
-        pointFlag = true;
-        preResultText.setText(ReversePolishNotation.transformationString(stringResult));
-    }
-
-    public void operationClick(View v) {
-        Button button = (Button) v;
-        String stringResult = resultText.getText().toString();
-        if (mathOperationFlag) {
-            stringResult = stringResult.substring(0, stringResult.length() - 1);
-        }
-        resultText.setText((stringResult + button.getText().toString()));
-        mathOperationFlag = true;
-        pointFlag = false;
-    }
-
-    public void onResultClick(View v) {
-        String arithmeticExpr = ReversePolishNotation.transformationString(resultText.getText().toString());
-        if (arithmeticExpr.isEmpty()) {
-            return;
-        }
-        preResultText.setText("");
-        resultText.setText(arithmeticExpr);
-        pointFlag = false;
-    }
-
-    public void cancelClick(View v) {
-        resultText.setText("0");
-        preResultText.setText("");
-        mathOperationFlag = false;
-    }
-
-    public void backSpaceClick(View v) {
-        final String actionsList = "/*+-";
-        String stringResult = resultText.getText().toString();
-        int lengthText = stringResult.length() - 1;
-        if (lengthText == 0) {
-            resultText.setText("0");
-            preResultText.setText("");
-            return;
-        }
-        mathOperationFlag = actionsList.contains(stringResult.substring(lengthText - 1, lengthText));
-        stringResult = stringResult.substring(0, lengthText);
-        lengthText--;
-        while (!actionsList.contains(Character.toString(stringResult.charAt(lengthText)))) {
-            if (Character.toString(stringResult.charAt(lengthText)).equals(".")) {
-                pointFlag = true;
-                break;
-            }
-            pointFlag = false;
-            lengthText--;
-            if (lengthText < 0) {
-                break;
-            }
-        }
-        resultText.setText(stringResult);
-        preResultText.setText(ReversePolishNotation.transformationString(stringResult));
-    }
-
-
-
 }
