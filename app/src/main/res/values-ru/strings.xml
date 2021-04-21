@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Калькулятор</string>
+    <string name="picture">Картинка колибри</string>
+    <string name="switch_theme">Смена темы</string>
+</resources>

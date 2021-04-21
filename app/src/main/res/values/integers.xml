@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="column_count">4</integer>
+    <integer name="row_span">2</integer>
+    <integer name="column_span">2</integer>
+    <integer name="result_row">3</integer>
+    <integer name="result_column">3</integer>
+    <integer name="zero_row">4</integer>
+    <integer name="zero_column">0</integer>
+</resources>

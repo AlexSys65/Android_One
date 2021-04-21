@@ -16,23 +16,15 @@ import ru.razuvaev.android_one.presenter.Manager;
 public class MainActivity extends AppCompatActivity implements MainContract.ViewText {
 
     private Manager manager;
-
     private TextView resultText, preResultText;
-    private boolean mathOperationFlag = false;
-    private boolean pointFlag = false;
-
     private static final String KEY_RESULT = "RESULT";
     private static final String KEY_PRE_RESULT = "PRE_RESULT";
-    private static final String KEY_MATH_FLAG = "MATH_FLAG";
-    private static final String KEY_POINT_FLAG = "POINT_FLAG";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         manager = new Manager(this, new ReversePolishNotation());
-
         resultText = findViewById(R.id.resultText);
         preResultText = findViewById(R.id.preText);
         if (savedInstanceState == null) {
@@ -41,8 +33,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         } else {
             resultText.setText(savedInstanceState.getString(KEY_RESULT));
             preResultText.setText(savedInstanceState.getString(KEY_PRE_RESULT));
-            mathOperationFlag = savedInstanceState.getBoolean(KEY_MATH_FLAG);
-            pointFlag = savedInstanceState.getBoolean(KEY_POINT_FLAG);
         }
         findViewById(R.id.button_0).setOnClickListener(v -> {
             manager.numberBtnClick(resultText.getText().toString(),"0");
@@ -109,8 +99,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         super.onSaveInstanceState(instanceState);
         instanceState.putString(KEY_RESULT, resultText.getText().toString());
         instanceState.putString(KEY_PRE_RESULT, preResultText.getText().toString());
-        instanceState.putBoolean(KEY_MATH_FLAG, mathOperationFlag);
-        instanceState.putBoolean(KEY_POINT_FLAG, pointFlag);
     }
 
  @Override

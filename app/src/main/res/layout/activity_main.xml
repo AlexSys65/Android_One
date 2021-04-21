@@ -29,20 +29,12 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/resultText" />
 
-    <com.google.android.material.switchmaterial.SwitchMaterial
-        android:id="@+id/switch1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/switch_theme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/preText" />
-
     <GridLayout
         android:id="@+id/gridLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:columnCount="4"
+        android:columnCount="@integer/column_count"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
@@ -50,28 +42,24 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_CLEAR"
             style="@style/cancel_btn"
-            android:onClick="cancelClick"
             android:text="@string/btn_clear"
             app:cornerRadius="@dimen/radius_numBtn" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_DIV"
             style="@style/actions_btn"
-            android:onClick="operationClick"
             android:text="@string/btn_Div"
             app:cornerRadius="@dimen/radius_numBtn" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_MULT"
             style="@style/actions_btn"
-            android:onClick="operationClick"
             android:text="@string/btn_Mult"
             app:cornerRadius="@dimen/radius_numBtn" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_BS"
             style="@style/actions_btn"
-            android:onClick="backSpaceClick"
             android:text="@string/btn_backS"
             app:cornerRadius="@dimen/radius_numBtn" />
 
@@ -96,7 +84,6 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_Minus"
             style="@style/actions_btn"
-            android:onClick="operationClick"
             android:text="@string/btn_Minus"
             app:cornerRadius="@dimen/radius_numBtn" />
 
@@ -121,7 +108,6 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_plus"
             style="@style/actions_btn"
-            android:onClick="operationClick"
             android:text="@string/btn_Plus"
             app:cornerRadius="@dimen/radius_numBtn" />
 
@@ -146,20 +132,19 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_RESULT"
             style="@style/actions_btn"
-            android:layout_row="3"
-            android:layout_rowSpan="2"
-            android:layout_column="3"
+            android:layout_row="@integer/result_row"
+            android:layout_rowSpan="@integer/row_span"
+            android:layout_column="@integer/result_column"
             android:layout_gravity="fill"
-            android:onClick="onResultClick"
             android:text="@string/btn_result"
             app:cornerRadius="@dimen/radius_numBtn" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_0"
             style="@style/number_btn"
-            android:layout_row="4"
-            android:layout_column="0"
-            android:layout_columnSpan="2"
+            android:layout_row="@integer/zero_row"
+            android:layout_column="@integer/zero_column"
+            android:layout_columnSpan="@integer/column_span"
             android:layout_gravity="fill"
             android:text="@string/btn_0"
             app:cornerRadius="@dimen/radius_numBtn" />

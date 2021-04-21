@@ -60,7 +60,7 @@ public class Manager implements MainContract.Presenter {
     @Override
     public void onResultClick(String stringResult) {
         message = ReversePolishNotation.calculateExpression(stringResult);
-        if (message.isEmpty()) {return;}
+        if (message.isEmpty() | message.equals("Деление на 0")) {return;}
         preMessage = "";
         pointFlag = false;
         mView.ShowText(message,preMessage);
