@@ -27,7 +27,6 @@ public class ReversePolishNotation {
     private static final String briefActions = "%^*/+-";
 
     public static String calculateExpression(String stringArithmeticExpression) {
-
         if (stringArithmeticExpression.isEmpty()) {
             return "";
         }
@@ -87,7 +86,6 @@ public class ReversePolishNotation {
                 outputStack.add(actStack.get(i));
             }
         }
-
         return calc(outputStack);
     }
 
@@ -151,7 +149,7 @@ public class ReversePolishNotation {
                         }
                         case ("/"): {
                             if ((Double) linkedListRPN.get(i - 1) == 0) {
-                                return "Деление на 0";
+                                return "division by zero";
                             }
                             linkedListRPN.set(i - 2, (Double) linkedListRPN.get(i - 2) / (Double) linkedListRPN.get(i - 1));
                             break;
@@ -172,7 +170,7 @@ public class ReversePolishNotation {
                 i++;
             }
         } catch (Exception e) {
-            Log.e("TAGNum", "calc: ", e);
+            Log.e("ReversePolishNotation", "[calc]: ", e);
         }
 
         resultString = linkedListRPN.toString().substring(1, linkedListRPN.toString().indexOf("]"));

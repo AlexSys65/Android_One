@@ -1,17 +1,11 @@
 package ru.razuvaev.android_one.presenter;
 
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-
 import ru.razuvaev.android_one.MainContract;
 import ru.razuvaev.android_one.model.ReversePolishNotation;
 
 public class Manager implements MainContract.Presenter {
-    private static final String TAG = "Manager";
 
     private final MainContract.ViewText mView;
-
 
     private String message;
     private String preMessage;
@@ -20,7 +14,6 @@ public class Manager implements MainContract.Presenter {
 
     public Manager(MainContract.ViewText mView) {
         this.mView = mView;
-        Log.d(TAG, "Constructor");
     }
 
     @Override
@@ -32,10 +25,8 @@ public class Manager implements MainContract.Presenter {
             stringResult = "";
         }
         mathOperationFlag = false;
-        message = stringResult + btnNumber;
-        preMessage = ReversePolishNotation.calculateExpression(message);
-        mView.ShowText(message, preMessage);
-    }
+        onDataTransferUI(stringResult + btnNumber);
+     }
 
     @Override
     public void pointBtnClick(String stringResult) {
@@ -44,10 +35,9 @@ public class Manager implements MainContract.Presenter {
         }
         mathOperationFlag = false;
         pointFlag = true;
-        message = stringResult + ".";
-        preMessage = ReversePolishNotation.calculateExpression(message);
-        mView.ShowText(message, preMessage);
+        onDataTransferUI(stringResult + ".");
     }
+
 
     @Override
     public void operationClick(String stringResult, String operation) {
@@ -56,15 +46,13 @@ public class Manager implements MainContract.Presenter {
         }
         mathOperationFlag = true;
         pointFlag = false;
-        message = stringResult + operation;
-        preMessage = ReversePolishNotation.calculateExpression(message);
-        mView.ShowText(message, preMessage);
+        onDataTransferUI(stringResult + operation);
     }
 
     @Override
     public void onResultClick(String stringResult) {
         message = ReversePolishNotation.calculateExpression(stringResult);
-        if (message.isEmpty() | message.equals("Деление на 0")) {
+        if (message.isEmpty() | message.equals("division by zero")) {
             return;
         }
         preMessage = "";
@@ -101,7 +89,11 @@ public class Manager implements MainContract.Presenter {
                 break;
             }
         }
-        preMessage = ReversePolishNotation.calculateExpression(message);
-        mView.ShowText(message, preMessage);
+        onDataTransferUI(message);
+    }
+
+    private void onDataTransferUI(String s) {
+        preMessage = ReversePolishNotation.calculateExpression(s);
+        mView.ShowText(s, preMessage);
     }
 }
