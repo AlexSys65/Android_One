@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        manager = new Manager(this, new ReversePolishNotation());
+        manager = new Manager(this);
         resultText = findViewById(R.id.resultText);
         preResultText = findViewById(R.id.preText);
         if (savedInstanceState == null) {
@@ -35,50 +35,50 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             preResultText.setText(savedInstanceState.getString(KEY_PRE_RESULT));
         }
         findViewById(R.id.button_0).setOnClickListener(v -> {
-            manager.numberBtnClick(resultText.getText().toString(),"0");
+            manager.numberBtnClick(resultText.getText().toString(), "0");
         });
         findViewById(R.id.button_1).setOnClickListener(v -> {
-            manager.numberBtnClick(resultText.getText().toString(),"1");
+            manager.numberBtnClick(resultText.getText().toString(), "1");
         });
         findViewById(R.id.button_2).setOnClickListener(v -> {
-            manager.numberBtnClick(resultText.getText().toString(),"2");
+            manager.numberBtnClick(resultText.getText().toString(), "2");
         });
         findViewById(R.id.button_3).setOnClickListener(v -> {
-            manager.numberBtnClick(resultText.getText().toString(),"3");
+            manager.numberBtnClick(resultText.getText().toString(), "3");
         });
         findViewById(R.id.button_4).setOnClickListener(v -> {
-            manager.numberBtnClick(resultText.getText().toString(),"4");
+            manager.numberBtnClick(resultText.getText().toString(), "4");
         });
         findViewById(R.id.button_5).setOnClickListener(v -> {
-            manager.numberBtnClick(resultText.getText().toString(),"5");
+            manager.numberBtnClick(resultText.getText().toString(), "5");
         });
         findViewById(R.id.button_6).setOnClickListener(v -> {
-            manager.numberBtnClick(resultText.getText().toString(),"6");
+            manager.numberBtnClick(resultText.getText().toString(), "6");
         });
         findViewById(R.id.button_7).setOnClickListener(v -> {
-            manager.numberBtnClick(resultText.getText().toString(),"7");
+            manager.numberBtnClick(resultText.getText().toString(), "7");
         });
         findViewById(R.id.button_8).setOnClickListener(v -> {
-            manager.numberBtnClick(resultText.getText().toString(),"8");
+            manager.numberBtnClick(resultText.getText().toString(), "8");
         });
         findViewById(R.id.button_9).setOnClickListener(v -> {
-            manager.numberBtnClick(resultText.getText().toString(),"9");
+            manager.numberBtnClick(resultText.getText().toString(), "9");
         });
         findViewById(R.id.button_point).setOnClickListener(v -> {
             manager.pointBtnClick(resultText.getText().toString());
         });
 
         findViewById(R.id.button_Minus).setOnClickListener(v -> {
-            manager.operationClick(resultText.getText().toString(),"-");
+            manager.operationClick(resultText.getText().toString(), "-");
         });
         findViewById(R.id.button_plus).setOnClickListener(v -> {
-            manager.operationClick(resultText.getText().toString(),"+");
+            manager.operationClick(resultText.getText().toString(), "+");
         });
         findViewById(R.id.button_MULT).setOnClickListener(v -> {
-            manager.operationClick(resultText.getText().toString(),"*");
+            manager.operationClick(resultText.getText().toString(), "*");
         });
         findViewById(R.id.button_DIV).setOnClickListener(v -> {
-            manager.operationClick(resultText.getText().toString(),"/");
+            manager.operationClick(resultText.getText().toString(), "/");
         });
 
         findViewById(R.id.button_RESULT).setOnClickListener(v -> {
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         instanceState.putString(KEY_PRE_RESULT, preResultText.getText().toString());
     }
 
- @Override
+    @Override
     public void ShowText(String result, String preResult) {
         resultText.setText(result);
         preResultText.setText(preResult);

@@ -18,10 +18,4 @@ public interface MainContract {
 
         void backSpaceClick(String resultText);
     }
-
-    interface Model {
-        static String calculateExpression(String s) {
-            return null;
-        }
-    }
 }

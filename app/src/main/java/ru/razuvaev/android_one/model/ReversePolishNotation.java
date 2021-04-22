@@ -9,7 +9,7 @@ import java.util.List;
 
 import ru.razuvaev.android_one.MainContract;
 
-public class ReversePolishNotation implements MainContract.Model {
+public class ReversePolishNotation {
 
     private static final HashMap<String, Integer> priority = new HashMap<String, Integer>() {
         {
