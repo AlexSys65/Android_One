@@ -2,10 +2,8 @@ package ru.razuvaev.android_one.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.TextView;
-
 import ru.razuvaev.android_one.MainContract;
 import ru.razuvaev.android_one.R;
 import ru.razuvaev.android_one.presenter.Manager;
