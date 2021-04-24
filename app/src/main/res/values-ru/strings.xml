@@ -2,5 +2,6 @@
 <resources>
     <string name="app_name">Калькулятор</string>
     <string name="picture">Картинка колибри</string>
-    <string name="switch_theme">Смена темы</string>
+    <string name="switch_theme">Темная тема</string>
+    <string name="start">Запустить калькулятоор</string>
 </resources>

@@ -3,5 +3,6 @@
     <string name="result" translatable="false">125+4–3*2</string>
     <string name="pre_result" translatable="false">123</string>
     <string name="picture">PICTURE HUMMINGBIRD</string>
-    <string name="switch_theme">Choosing a theme</string>
+    <string name="switch_theme">Dark theme</string>
+    <string name="start">Start calculator</string>
 </resources>

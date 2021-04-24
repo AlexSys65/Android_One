@@ -4,13 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import ru.razuvaev.android_one.MainContract;
 import ru.razuvaev.android_one.R;
-import ru.razuvaev.android_one.model.ReversePolishNotation;
 import ru.razuvaev.android_one.presenter.Manager;
 
 public class MainActivity extends AppCompatActivity implements MainContract.ViewText {
@@ -23,6 +20,13 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Bundle arguments = getIntent().getExtras();
+        Boolean darkTheme = arguments.getBoolean("Theme");
+        if (darkTheme) {
+            setTheme(R.style.Theme_Android_Two);
+        } else {
+            setTheme(R.style.Theme_Android_One);
+        }
         setContentView(R.layout.activity_main);
         manager = new Manager(this);
         resultText = findViewById(R.id.resultText);

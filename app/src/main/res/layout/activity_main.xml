@@ -65,19 +65,16 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_7"
-            style="@style/number_btn"
             android:text="@string/btn_7"
             app:cornerRadius="@dimen/radius_numBtn" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_8"
-            style="@style/number_btn"
             android:text="@string/btn_8"
             app:cornerRadius="@dimen/radius_numBtn" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_9"
-            style="@style/number_btn"
             android:text="@string/btn_9"
             app:cornerRadius="@dimen/radius_numBtn" />
 
@@ -89,19 +86,16 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_4"
-            style="@style/number_btn"
             android:text="@string/btn_4"
             app:cornerRadius="@dimen/radius_numBtn" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_5"
-            style="@style/number_btn"
             android:text="@string/btn_5"
             app:cornerRadius="@dimen/radius_numBtn" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_6"
-            style="@style/number_btn"
             android:text="@string/btn_6"
             app:cornerRadius="@dimen/radius_numBtn" />
 
@@ -113,19 +107,16 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_1"
-            style="@style/number_btn"
             android:text="@string/btn_1"
             app:cornerRadius="@dimen/radius_numBtn" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_2"
-            style="@style/number_btn"
             android:text="@string/btn_2"
             app:cornerRadius="@dimen/radius_numBtn" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_3"
-            style="@style/number_btn"
             android:text="@string/btn_3"
             app:cornerRadius="@dimen/radius_numBtn" />
 
@@ -141,7 +132,6 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_0"
-            style="@style/number_btn"
             android:layout_row="@integer/zero_row"
             android:layout_column="@integer/zero_column"
             android:layout_columnSpan="@integer/column_span"
@@ -151,7 +141,6 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/button_point"
-            style="@style/number_btn"
             android:text="@string/btn_point"
             app:cornerRadius="@dimen/radius_numBtn" />
     </GridLayout>

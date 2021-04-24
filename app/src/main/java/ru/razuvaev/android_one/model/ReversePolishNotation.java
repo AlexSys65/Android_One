@@ -1,13 +1,10 @@
 package ru.razuvaev.android_one.model;
 
 import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-
-import ru.razuvaev.android_one.MainContract;
 
 public class ReversePolishNotation {
 

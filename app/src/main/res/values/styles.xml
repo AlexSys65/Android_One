@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="cancel_btn">
+    <style name="cancel_btn" parent="Widget.MaterialComponents.Button">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:backgroundTint">@color/colorButCancel</item>
@@ -10,7 +10,7 @@
         <item name="android:textSize">@dimen/numBtn</item>
     </style>
 
-    <style name="actions_btn">
+    <style name="actions_btn" parent="Widget.MaterialComponents.Button">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:backgroundTint">@color/colorAction</item>
@@ -19,7 +19,7 @@
         <item name="android:textSize">@dimen/numBtn</item>
     </style>
 
-    <style name="number_btn">
+    <style name="number_btn" parent="Widget.MaterialComponents.Button">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:backgroundTint">@color/colorNumberButton</item>
@@ -28,7 +28,7 @@
         <item name="android:textSize">@dimen/numBtn</item>
     </style>
 
-    <style name="cancel_btn_land">
+    <style name="cancel_btn_land" parent="Widget.MaterialComponents.Button">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:backgroundTint">@color/colorButCancel</item>
@@ -37,7 +37,7 @@
         <item name="android:textSize">@dimen/land_numBtn</item>
     </style>
 
-    <style name="action_btn_land">
+    <style name="action_btn_land" parent="Widget.MaterialComponents.Button">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:backgroundTint">@color/colorAction</item>
@@ -46,7 +46,7 @@
         <item name="android:textSize">@dimen/land_numBtn</item>
     </style>
 
-    <style name="number_btn_land">
+    <style name="number_btn_land" parent="Widget.MaterialComponents.Button">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:backgroundTint">@color/colorNumberButton</item>
