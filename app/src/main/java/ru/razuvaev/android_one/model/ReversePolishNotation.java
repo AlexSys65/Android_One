@@ -1,6 +1,9 @@
 package ru.razuvaev.android_one.model;
 
 import android.util.Log;
+
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -23,9 +26,13 @@ public class ReversePolishNotation {
     private static final String actions = "%^*/+-()";
     private static final String briefActions = "%^*/+-";
 
-    public static String calculateExpression(String stringArithmeticExpression) {
+    public static String calculateExpression(@NonNull String stringArithmeticExpression) {
         if (stringArithmeticExpression.isEmpty()) {
             return "";
+        }
+        String s = stringArithmeticExpression.substring(0,1);
+        if (briefActions.contains(s)) {
+            stringArithmeticExpression = "0"+ stringArithmeticExpression;
         }
         List<Object> arithmeticExpression = stringConversion(stringArithmeticExpression);
         if (arithmeticExpression.isEmpty()) {
@@ -86,7 +93,8 @@ public class ReversePolishNotation {
         return calc(outputStack);
     }
 
-    private static List<Object> stringConversion(String stringArithmeticExpression) {
+    @NonNull
+    private static List<Object> stringConversion(@NonNull String stringArithmeticExpression) {
         List<Object> arithmeticExpression = new ArrayList<>();
         int indexBegin = 0;
         Double number;

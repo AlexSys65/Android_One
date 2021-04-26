@@ -2,8 +2,10 @@ package ru.razuvaev.android_one.view;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.widget.TextView;
+
 import ru.razuvaev.android_one.MainContract;
 import ru.razuvaev.android_one.R;
 import ru.razuvaev.android_one.presenter.Manager;
@@ -36,36 +38,9 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
             resultText.setText(savedInstanceState.getString(KEY_RESULT));
             preResultText.setText(savedInstanceState.getString(KEY_PRE_RESULT));
         }
-        findViewById(R.id.button_0).setOnClickListener(v -> {
-            manager.numberBtnClick(resultText.getText().toString(), "0");
-        });
-        findViewById(R.id.button_1).setOnClickListener(v -> {
-            manager.numberBtnClick(resultText.getText().toString(), "1");
-        });
-        findViewById(R.id.button_2).setOnClickListener(v -> {
-            manager.numberBtnClick(resultText.getText().toString(), "2");
-        });
-        findViewById(R.id.button_3).setOnClickListener(v -> {
-            manager.numberBtnClick(resultText.getText().toString(), "3");
-        });
-        findViewById(R.id.button_4).setOnClickListener(v -> {
-            manager.numberBtnClick(resultText.getText().toString(), "4");
-        });
-        findViewById(R.id.button_5).setOnClickListener(v -> {
-            manager.numberBtnClick(resultText.getText().toString(), "5");
-        });
-        findViewById(R.id.button_6).setOnClickListener(v -> {
-            manager.numberBtnClick(resultText.getText().toString(), "6");
-        });
-        findViewById(R.id.button_7).setOnClickListener(v -> {
-            manager.numberBtnClick(resultText.getText().toString(), "7");
-        });
-        findViewById(R.id.button_8).setOnClickListener(v -> {
-            manager.numberBtnClick(resultText.getText().toString(), "8");
-        });
-        findViewById(R.id.button_9).setOnClickListener(v -> {
-            manager.numberBtnClick(resultText.getText().toString(), "9");
-        });
+
+        setNumberButtonListeners();
+
         findViewById(R.id.button_point).setOnClickListener(v -> {
             manager.pointBtnClick(resultText.getText().toString());
         });
@@ -94,6 +69,28 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         findViewById(R.id.button_BS).setOnClickListener(v -> {
             manager.backSpaceClick(resultText.getText().toString());
         });
+    }
+
+    private final int[] numberButtonIds = new int[]{
+            R.id.button_0,
+            R.id.button_1,
+            R.id.button_2,
+            R.id.button_3,
+            R.id.button_4,
+            R.id.button_5,
+            R.id.button_6,
+            R.id.button_7,
+            R.id.button_8,
+            R.id.button_9
+    };
+
+    private void setNumberButtonListeners(){
+        for (int i = 0; i < numberButtonIds.length; i++) {
+            int index = i;
+            findViewById(numberButtonIds[i]).setOnClickListener(v -> {
+                manager.numberBtnClick(resultText.getText().toString(), String.valueOf(index));
+            });
+        }
     }
 
     @Override
