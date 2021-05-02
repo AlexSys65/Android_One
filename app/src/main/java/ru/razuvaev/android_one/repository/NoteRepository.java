@@ -1,10 +1,11 @@
 package ru.razuvaev.android_one.repository;
 
 import android.os.Build;
-import androidx.annotation.RequiresApi;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
+
+import androidx.annotation.RequiresApi;
 
 public class NoteRepository {
 

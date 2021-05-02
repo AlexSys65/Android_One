@@ -4,17 +4,18 @@ package ru.razuvaev.android_one.repository;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class Note implements  Parcelable{
+public class Note implements Parcelable {
     private final String dateTime;
     private final String nameNote;
     private final String description;
     private static final int END_INDEX_NAME = 40;
 
-    public Note(String dateTime,String description) {
+    public Note(String dateTime, String description) {
         this.dateTime = dateTime;
         this.nameNote = description.substring(0, END_INDEX_NAME);
         this.description = description;
     }
+
     protected Note(Parcel in) {
         dateTime = in.readString();
         nameNote = in.readString();
@@ -33,11 +34,9 @@ public class Note implements  Parcelable{
         }
     };
 
-    public String getDateTime() {
-        return dateTime;
+    public String getNameNote() {
+        return nameNote;
     }
-
-    public String getNameNote() {return nameNote;}
 
     public String getDescription() {
         return description;
