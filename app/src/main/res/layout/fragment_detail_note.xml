@@ -1,16 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".DetailFragment">
+
+    <TextView
+        android:id="@+id/hint_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:text="@string/date_note"
+        android:textSize="@dimen/size_date_hint" />
+
+    <TextView
+        android:id="@+id/date_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:text="@string/date_note"
+        android:textSize="@dimen/size_date"
+        app:helperTextEnabled="false"
+        app:hintEnabled="false" />
+
+    <TextView
+        android:id="@+id/note_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="start"
+        android:text="@string/description_note"
+        android:textSize="@dimen/size_date_hint" />
 
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/detail_note"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Второй фрагмент"
-        android:gravity="top"/>
+        android:gravity="top" />
 
-</FrameLayout>
+</LinearLayout>

@@ -4,12 +4,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.textfield.TextInputEditText;
+
 
 import ru.razuvaev.android_one.repository.Note;
 
@@ -27,7 +29,6 @@ public class DetailFragment extends Fragment {
         bundle.putParcelable(KEY_NOTE, note);
 
         fragment.setArguments(bundle);
-
         return fragment;
     }
 
@@ -43,8 +44,10 @@ public class DetailFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         TextInputEditText detail = view.findViewById(R.id.detail_note);
+        TextView dateTime = view.findViewById(R.id.date_field);
         assert getArguments() != null;
         Note note = getArguments().getParcelable(KEY_NOTE);
+        dateTime.setText(note.getDateTime());
         detail.setText(note.getDescription());
     }
 }

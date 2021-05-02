@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Заметки</string>
+    <string name="date_note">Дата заметки</string>
+    <string name="description_note">Содержание заметки</string>
 </resources>

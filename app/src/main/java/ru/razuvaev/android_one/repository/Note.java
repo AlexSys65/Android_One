@@ -8,11 +8,11 @@ public class Note implements Parcelable {
     private final String dateTime;
     private final String nameNote;
     private final String description;
-    private static final int END_INDEX_NAME = 40;
+    private static final int END_INDEX_NAME = 60;
 
     public Note(String dateTime, String description) {
         this.dateTime = dateTime;
-        this.nameNote = description.substring(0, END_INDEX_NAME);
+        this.nameNote = dateTime + "\n" + description.substring(0, END_INDEX_NAME);
         this.description = description;
     }
 
@@ -40,6 +40,10 @@ public class Note implements Parcelable {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getDateTime() {
+        return dateTime;
     }
 
     @Override

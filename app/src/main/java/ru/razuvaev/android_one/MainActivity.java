@@ -36,18 +36,19 @@ public class MainActivity extends AppCompatActivity implements OnFragmentSendDat
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
+        //TODO запомнить заметку и при повороте вытащить по умолчанию
     }
 
     @Override
     public void onSendData(Note selectedItem) {
-        FragmentManager fragmentManager = getSupportFragmentManager();
+         myFragmentManager = getSupportFragmentManager();
 
         if (isLandscape) {
-            fragmentManager.beginTransaction()
+            myFragmentManager.beginTransaction()
                     .replace(R.id.details_fragment, DetailFragment.newInstance(selectedItem))
                     .commit();
         } else {
-            fragmentManager.beginTransaction()
+            myFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container, DetailFragment.newInstance(selectedItem))
                     .addToBackStack(null)
                     .commit();

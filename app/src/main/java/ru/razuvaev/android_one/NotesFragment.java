@@ -43,11 +43,9 @@ public class NotesFragment extends Fragment {
 
         ArrayList<Note> notes = NoteRepository.getNotes();
         String[] nameNotes = new String[notes.size()];
-
         for (int i = 0; i < notes.size(); i++) {
             nameNotes[i] = notes.get(i).getNameNote();
         }
-
         ListView noteList = view.findViewById(R.id.note_list);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, nameNotes);
         noteList.setAdapter(adapter);
@@ -60,7 +58,6 @@ public class NotesFragment extends Fragment {
 
     @Override
     public void onAttach(@NonNull Context context) {
-
         super.onAttach(context);
         try {
             fragmentSendDataListener = (OnFragmentSendDataListener) context;
