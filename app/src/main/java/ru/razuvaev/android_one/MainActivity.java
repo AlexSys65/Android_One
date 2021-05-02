@@ -9,9 +9,11 @@ import android.os.Bundle;
 
 
 import ru.razuvaev.android_one.repository.Note;
+import ru.razuvaev.android_one.repository.Publisher;
 
-public class MainActivity extends AppCompatActivity implements OnFragmentSendDataListener {
+public class MainActivity extends AppCompatActivity implements OnFragmentSendDataListener, PublisherHolder {
 
+    private Publisher publisher = new Publisher();
     FragmentManager myFragmentManager;
     private boolean isLandscape = false;
 
@@ -53,5 +55,11 @@ public class MainActivity extends AppCompatActivity implements OnFragmentSendDat
                     .addToBackStack(null)
                     .commit();
         }
+    }
+
+    @Override
+    public Publisher getPublisher() {
+
+        return publisher;
     }
 }

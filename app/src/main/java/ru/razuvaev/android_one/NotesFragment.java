@@ -52,6 +52,10 @@ public class NotesFragment extends Fragment {
 
         noteList.setOnItemClickListener((parent, view1, position, id) -> {
             Note selectedItem = notes.get(position);
+            if (getActivity() instanceof PublisherHolder) {
+                PublisherHolder holder = (PublisherHolder) getActivity();
+                holder.getPublisher().notify(selectedItem);
+            }
             fragmentSendDataListener.onSendData(selectedItem);
         });
     }
