@@ -3,4 +3,8 @@
     <string name="app_name">Заметки</string>
     <string name="date_note">Дата заметки</string>
     <string name="description_note">Содержание заметки</string>
+    <string name="action_search">Поиск</string>
+    <string name="action_add">Добавить заметку</string>
+    <string name="action_del">Удалить</string>
+    <string name="detail_name_menu">Заметка</string>
 </resources>

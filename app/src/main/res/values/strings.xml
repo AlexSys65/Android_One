@@ -2,4 +2,8 @@
     <string name="app_name">Notes</string>
     <string name="date_note">Date note</string>
     <string name="description_note">Description note</string>
+    <string name="action_search">Search</string>
+    <string name="action_add">App note</string>
+    <string name="action_del">Delete</string>
+    <string name="detail_name_menu">Note</string>
 </resources>

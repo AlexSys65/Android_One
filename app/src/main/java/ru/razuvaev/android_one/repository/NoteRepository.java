@@ -10,11 +10,11 @@ import java.util.Date;
 
 public class NoteRepository {
 
-    //@RequiresApi(api = Build.VERSION_CODES.O)
+
     public static ArrayList<Note> getNotes() {
         ArrayList<Note> notes = new ArrayList<>();
 
-        // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy HH:mm:ss");
+
         @SuppressLint("SimpleDateFormat")
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy HH:mm:ss");
 

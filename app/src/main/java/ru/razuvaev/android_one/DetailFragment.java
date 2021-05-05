@@ -6,9 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -64,6 +66,21 @@ public class DetailFragment extends Fragment implements Observer {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        Toolbar toolbar = view.findViewById(R.id.detail_tool_bar);
+
+        toolbar.setOnMenuItemClickListener(item -> {
+            switch (item.getItemId()) {
+                case (R.id.action_search_detail): {
+                    Toast.makeText(requireContext(), "Search in detail note", Toast.LENGTH_SHORT).show();
+                    break;
+                }
+                case (R.id.action_delete_detail): {
+                    Toast.makeText(requireContext(), "Delete note", Toast.LENGTH_SHORT).show();
+                }
+            }
+            return true;
+        });
 
         detail = view.findViewById(R.id.detail_note);
         dateTime = view.findViewById(R.id.date_field);
