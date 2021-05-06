@@ -30,6 +30,7 @@ public class NotesFragment extends Fragment {
     private OnFragmentSendDataListener fragmentSendDataListener;
     ArrayList<Note> notes;
 
+
     public NotesFragment() {
         // Required empty public constructor
     }
