@@ -1,4 +1,11 @@
-package ru.razuvaev.android_one;
+package ru.razuvaev.android_one.ui;
+/**
+ * author: AlexSys65 alexsystems@mail.ru
+ * practical work on the course Android beginner level GeekBrains
+ * topic: Notes
+ * Purpose: Launching an activity, managing fragments, receiving messages from fragments,
+ * passing a message to the NoteRepository business logic class and vice versa.
+ */
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,24 +14,27 @@ import androidx.fragment.app.FragmentManager;
 
 import android.os.Bundle;
 
-
+import ru.razuvaev.android_one.FragmentSendDataListener;
+import ru.razuvaev.android_one.R;
 import ru.razuvaev.android_one.repository.Note;
 import ru.razuvaev.android_one.repository.Publisher;
 
-public class MainActivity extends AppCompatActivity implements OnFragmentSendDataListener, PublisherHolder {
 
-    private Publisher publisher = new Publisher();
-    FragmentManager myFragmentManager;
-    private boolean isLandscape = false;
+public class MainActivity extends AppCompatActivity
+        implements FragmentSendDataListener, PublisherHolder {
+
+    protected final Publisher mPublisher = new Publisher();
+    protected FragmentManager myFragmentManager;
+    protected boolean mIsLandscape = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_drawer_layout);
 
-        isLandscape = getResources().getBoolean(R.bool.isLandscape); //!!
+        mIsLandscape = getResources().getBoolean(R.bool.isLandscape);
 
-        if (!isLandscape) {
+        if (!mIsLandscape) {
             myFragmentManager = getSupportFragmentManager();
             Fragment fragment = myFragmentManager.findFragmentById(R.id.fragment_container);
             if (fragment == null) {
@@ -38,14 +48,14 @@ public class MainActivity extends AppCompatActivity implements OnFragmentSendDat
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        //TODO запомнить заметку и при повороте вытащить по умолчанию
+        //TODO: запомнить заметку и при повороте вытащить по умолчанию
     }
 
     @Override
     public void onSendData(Note selectedItem) {
-         myFragmentManager = getSupportFragmentManager();
+        myFragmentManager = getSupportFragmentManager();
 
-        if (isLandscape) {
+        if (mIsLandscape) {
             myFragmentManager.beginTransaction()
                     .replace(R.id.details_fragment, DetailFragment.newInstance(selectedItem))
                     .commit();
@@ -59,7 +69,6 @@ public class MainActivity extends AppCompatActivity implements OnFragmentSendDat
 
     @Override
     public Publisher getPublisher() {
-
-        return publisher;
+        return mPublisher;
     }
 }

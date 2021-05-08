@@ -6,6 +6,6 @@
     app:startDestination="@id/placeholder">
 
     <fragment android:id="@+id/placeholder"
-        android:name="ru.razuvaev.android_one.NotesFragment"
+        android:name="ru.razuvaev.android_one.ui.NotesFragment"
         tools:layout="@layout/fragment_notes" />
 </navigation>

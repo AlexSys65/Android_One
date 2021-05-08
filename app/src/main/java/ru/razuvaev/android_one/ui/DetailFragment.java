@@ -1,4 +1,4 @@
-package ru.razuvaev.android_one;
+package ru.razuvaev.android_one.ui;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -16,14 +16,16 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.textfield.TextInputEditText;
 
 
+import ru.razuvaev.android_one.Observer;
+import ru.razuvaev.android_one.R;
 import ru.razuvaev.android_one.repository.Note;
 import ru.razuvaev.android_one.repository.Publisher;
 
 public class DetailFragment extends Fragment implements Observer {
 
     private static final String KEY_NOTE = "NOTE";
-    private TextInputEditText detail;
-    private TextView dateTime;
+    private TextInputEditText mDetail;
+    private TextView mDateTime;
 
     public DetailFragment() {
     }
@@ -82,17 +84,17 @@ public class DetailFragment extends Fragment implements Observer {
             return true;
         });
 
-        detail = view.findViewById(R.id.detail_note);
-        dateTime = view.findViewById(R.id.date_field);
+        mDetail = view.findViewById(R.id.detail_note);
+        mDateTime = view.findViewById(R.id.date_field);
         assert getArguments() != null;
         Note note = getArguments().getParcelable(KEY_NOTE);
-        dateTime.setText(note.getDateTime());
-        detail.setText(note.getDescription());
+        mDateTime.setText(note.getDateTime());
+        mDetail.setText(note.getDescription());
     }
 
     @Override
     public void updateNote(Note note) {
-        dateTime.setText(note.getDateTime());
-        detail.setText(note.getDescription());
+        mDateTime.setText(note.getDateTime());
+        mDetail.setText(note.getDescription());
     }
 }

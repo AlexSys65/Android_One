@@ -5,18 +5,21 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class Note implements Parcelable {
+    private final String mId;
     private final String dateTime;
     private final String nameNote;
     private final String description;
-    private static final int END_INDEX_NAME = 60;
+    private static final int END_INDEX_NAME = 80;
 
-    public Note(String dateTime, String description) {
+    public Note(String id, String dateTime, String description) {
+        this.mId = id;
         this.dateTime = dateTime;
-        this.nameNote = dateTime + "\n" + description.substring(0, END_INDEX_NAME);
+        this.nameNote = description.substring(0, END_INDEX_NAME);
         this.description = description;
     }
 
     protected Note(Parcel in) {
+        mId = in.readString();
         dateTime = in.readString();
         nameNote = in.readString();
         description = in.readString();
@@ -34,6 +37,10 @@ public class Note implements Parcelable {
         }
     };
 
+    public String getId() {
+        return mId;
+    }
+
     public String getNameNote() {
         return nameNote;
     }
@@ -46,6 +53,7 @@ public class Note implements Parcelable {
         return dateTime;
     }
 
+
     @Override
     public int describeContents() {
         return 0;
@@ -53,8 +61,10 @@ public class Note implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(mId);
         dest.writeString(dateTime);
         dest.writeString(nameNote);
         dest.writeString(description);
+
     }
 }

@@ -1,4 +1,4 @@
-package ru.razuvaev.android_one;
+package ru.razuvaev.android_one.ui;
 
 import android.content.Context;
 import android.os.Build;
@@ -9,26 +9,29 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.Toast;
 
 
 import java.util.ArrayList;
 
+import ru.razuvaev.android_one.FragmentSendDataListener;
+import ru.razuvaev.android_one.R;
 import ru.razuvaev.android_one.repository.Note;
 import ru.razuvaev.android_one.repository.NoteRepository;
 
 public class NotesFragment extends Fragment {
 
+    protected NoteRepository repository = new NoteRepository();
 
-    private OnFragmentSendDataListener fragmentSendDataListener;
-    ArrayList<Note> notes;
+    private FragmentSendDataListener mFragmentSendDataListener;
+    ArrayList<Note> mNotes;
 
 
     public NotesFragment() {
@@ -72,33 +75,28 @@ public class NotesFragment extends Fragment {
             return true;
         });
 
+        if (mNotes == null) mNotes = repository.getNotes();
 
-        if (notes == null) {
-            notes = NoteRepository.getNotes();
-        }
-        String[] nameNotes = new String[notes.size()];
-        for (int i = 0; i < notes.size(); i++) {
-            nameNotes[i] = notes.get(i).getNameNote();
-        }
-        ListView noteList = view.findViewById(R.id.note_list);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, nameNotes);
-        noteList.setAdapter(adapter);
+        NotesAdapter adapter = new NotesAdapter(this, mNotes);
 
-        noteList.setOnItemClickListener((parent, view1, position, id) -> {
-            Note selectedItem = notes.get(position);
+        adapter.setClickListener(note -> {
             if (getActivity() instanceof PublisherHolder) {
                 PublisherHolder holder = (PublisherHolder) getActivity();
-                holder.getPublisher().notify(selectedItem);
+                holder.getPublisher().notify(note);
             }
-            fragmentSendDataListener.onSendData(selectedItem);
+            mFragmentSendDataListener.onSendData(note);
         });
+
+        RecyclerView noteList = view.findViewById(R.id.note_list);
+        noteList.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
+        noteList.setAdapter(adapter);
     }
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         try {
-            fragmentSendDataListener = (OnFragmentSendDataListener) context;
+            mFragmentSendDataListener = (FragmentSendDataListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString()
                     + "must implement the interface OnFragmentSendDataListener");
@@ -107,7 +105,7 @@ public class NotesFragment extends Fragment {
 
     @Override
     public void onDetach() {
-        fragmentSendDataListener = null;
+        mFragmentSendDataListener = null;
         super.onDetach();
     }
 }

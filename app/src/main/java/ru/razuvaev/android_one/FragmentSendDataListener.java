@@ -2,6 +2,6 @@ package ru.razuvaev.android_one;
 
 import ru.razuvaev.android_one.repository.Note;
 
-public interface OnFragmentSendDataListener {
+public interface FragmentSendDataListener {
     void onSendData(Note data);
 }
