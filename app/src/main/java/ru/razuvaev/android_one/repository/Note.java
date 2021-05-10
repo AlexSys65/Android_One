@@ -6,9 +6,9 @@ import android.os.Parcelable;
 
 public class Note implements Parcelable {
     private final String mId;
-    private final String dateTime;
-    private final String nameNote;
-    private final String description;
+    private  String dateTime;
+    private  String nameNote;
+    private  String description;
     private static final int END_INDEX_NAME = 80;
 
     public Note(String id, String dateTime, String description) {
@@ -45,13 +45,26 @@ public class Note implements Parcelable {
         return nameNote;
     }
 
+    public void setNameNote() {
+        this.nameNote = description.substring(0, END_INDEX_NAME);
+    }
+
     public String getDescription() {
         return description;
+    }
+
+    public void setDescription(String s) {
+        this.description = s;
     }
 
     public String getDateTime() {
         return dateTime;
     }
+
+    public void setDateTime(String s) {
+        this.dateTime = s;
+    }
+
 
 
     @Override

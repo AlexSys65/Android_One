@@ -9,9 +9,9 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/action_delete_detail"
-        android:icon="@android:drawable/ic_menu_delete"
-        android:title="@string/action_del"
+        android:id="@+id/action_edit_detail"
+        android:icon="@android:drawable/ic_menu_edit"
+        android:title="@string/action_edit"
         app:showAsAction="ifRoom" />
 
 </menu>

@@ -4,6 +4,7 @@
     <string name="description_note">Description note</string>
     <string name="action_search">Search</string>
     <string name="action_add">App note</string>
+    <string name="action_edit">Edit</string>
     <string name="action_del">Delete</string>
     <string name="detail_name_menu">Note</string>
     <string name="menu_inf">About a program</string>
@@ -11,5 +12,6 @@
     <string name="nav_header_title">User name</string>
     <string name="nav_header_subtitle">username@mail.ru</string>
     <string name="about_program">Note: When adding a navigation graph to your project, if you haven\'t already added navigation dependencies to your app\'s build.gradle file, Android Studio displays a prompt and offers to add the dependencies for you. Note, however, that Android Studio 3.4 adds the non-KTX 1.0.0 versions of the dependencies, so be sure to replace these values if you are using Kotlin or intend to use version 2.0.0 or higher.</string>
+    <string name="save_detail">Save</string>
 
 </resources>

@@ -13,33 +13,42 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 import ru.razuvaev.android_one.FragmentSendDataListener;
 import ru.razuvaev.android_one.Observer;
 import ru.razuvaev.android_one.R;
 import ru.razuvaev.android_one.repository.Note;
 import ru.razuvaev.android_one.repository.Publisher;
 
-public class DetailFragment extends Fragment implements Observer {
+public class NoteEditFragment extends Fragment implements Observer {
 
-    protected static final String KEY_NOTE = "NOTE";
-    protected TextView mDetail;
-    protected TextView mDateTime;
+    private static final String KEY_NOTE_EDIT = "NOTE_EDIT";
+    protected TextView mEditDate;
+    protected TextInputEditText mDescription;
     protected FragmentSendDataListener mFragmentSendDataListener;
 
-    public DetailFragment() {
+    public NoteEditFragment() {
+
     }
 
-    public static DetailFragment newInstance(Note note) {
-        DetailFragment fragment = new DetailFragment();
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(false);
+    }
+
+    public static NoteEditFragment newInstance(Note note) {
+        NoteEditFragment fragment = new NoteEditFragment();
 
         Bundle bundle = new Bundle();
-        bundle.putParcelable(KEY_NOTE, note);
+        bundle.putParcelable(KEY_NOTE_EDIT, note);
 
         fragment.setArguments(bundle);
         return fragment;
     }
 
-    private Publisher publisher;
+    protected Publisher publisher;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -65,51 +74,45 @@ public class DetailFragment extends Fragment implements Observer {
         super.onDetach();
     }
 
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_detail_note, container, false);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_add_note, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        assert getArguments() != null;
-        Note note = getArguments().getParcelable(KEY_NOTE);
+        mEditDate = view.findViewById(R.id.date_edit);
+        mDescription = view.findViewById(R.id.edit_text_note);
 
-        Toolbar toolbar = view.findViewById(R.id.detail_tool_bar);
+        assert getArguments() != null;
+        Note note = getArguments().getParcelable(KEY_NOTE_EDIT);
+
+        Toolbar toolbar = view.findViewById(R.id.edit_tool_bar);
 
         toolbar.setOnMenuItemClickListener(item -> {
-            switch (item.getItemId()) {
-                case (R.id.action_search_detail): {
-                    Toast.makeText(requireContext(), "Search in detail note", Toast.LENGTH_SHORT).show();
-                    break;
-                }
-                case (R.id.action_edit_detail): {
-                    Toast.makeText(requireContext(), "edit note", Toast.LENGTH_SHORT).show();
-                    if (getActivity() instanceof PublisherHolder) {
-                        PublisherHolder holder = (PublisherHolder) getActivity();
-                        holder.getPublisher().notify(note);
-                    }
-                    mFragmentSendDataListener.onSendData(note, "edit");
-
-                }
+            if (item.getItemId() == R.id.action_save_detail) {
+                Toast.makeText(requireContext(), "Save detail", Toast.LENGTH_SHORT).show();
+                saveChangeNote(note, mEditDate, mDescription);
             }
             return true;
         });
-
-        mDetail = view.findViewById(R.id.detail_note);
-        mDateTime = view.findViewById(R.id.date_field);
-
-
-        mDateTime.setText(note.getDateTime());
-        mDetail.setText(note.getDescription());
+        mEditDate.setText(note.getDateTime());
+        mDescription.setText(note.getDescription());
     }
+
+    private void saveChangeNote(Note note, TextView mEditDate, TextInputEditText mDescription) {
+       /* note.setDateTime(mEditDate.toString());
+        note.setDescription(mDescription.toString());
+        note.setNameNote();*/
+        //TODO Передать измененный объект note во фрагмент деталей, вернуться к режиму просмотра.
+    }
+
 
     @Override
     public void updateNote(Note note) {
-        mDateTime.setText(note.getDateTime());
-        mDetail.setText(note.getDescription());
+
     }
 }

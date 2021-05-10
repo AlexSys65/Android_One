@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity
         implements FragmentSendDataListener, PublisherHolder {
 
     protected final Publisher mPublisher = new Publisher();
-    protected FragmentManager myFragmentManager;
+    protected FragmentManager myFragmentManager = getSupportFragmentManager();
     protected boolean mIsLandscape = false;
 
     @Override
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity
         mIsLandscape = getResources().getBoolean(R.bool.isLandscape);
 
         if (!mIsLandscape) {
-            myFragmentManager = getSupportFragmentManager();
+
             Fragment fragment = myFragmentManager.findFragmentById(R.id.fragment_container);
             if (fragment == null) {
                 myFragmentManager.beginTransaction()
@@ -52,9 +52,15 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void onSendData(Note selectedItem) {
-        myFragmentManager = getSupportFragmentManager();
+    public void onSendData(Note selectedItem, String action) {
 
+        if (action.equals("edit")) {
+            myFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, NoteEditFragment.newInstance(selectedItem))
+                    .addToBackStack(null)
+                    .commit();
+            return;
+        }
         if (mIsLandscape) {
             myFragmentManager.beginTransaction()
                     .replace(R.id.details_fragment, DetailFragment.newInstance(selectedItem))

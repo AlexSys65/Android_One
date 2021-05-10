@@ -30,8 +30,8 @@ public class NotesFragment extends Fragment {
 
     protected NoteRepository repository = new NoteRepository();
 
-    private FragmentSendDataListener mFragmentSendDataListener;
-    ArrayList<Note> mNotes;
+    protected FragmentSendDataListener mFragmentSendDataListener;
+    protected ArrayList<Note> mNotes;
 
 
     public NotesFragment() {
@@ -84,7 +84,7 @@ public class NotesFragment extends Fragment {
                 PublisherHolder holder = (PublisherHolder) getActivity();
                 holder.getPublisher().notify(note);
             }
-            mFragmentSendDataListener.onSendData(note);
+            mFragmentSendDataListener.onSendData(note, "view");
         });
 
         RecyclerView noteList = view.findViewById(R.id.note_list);
