@@ -113,13 +113,10 @@ public class NoteEditFragment extends Fragment implements Observer {
             return true;
         });
 
-        mEditDate.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(requireContext(), "Edit date", Toast.LENGTH_SHORT).show();
-                setDate(v);
-                setTime(v);
-            }
+        mEditDate.setOnClickListener(v -> {
+            Toast.makeText(requireContext(), "Edit date", Toast.LENGTH_SHORT).show();
+            setDate(v);
+            setTime(v);
         });
         mEditDate.setText(note.getDateTime());
         mDescription.setText(note.getDescription());
@@ -140,21 +137,17 @@ public class NoteEditFragment extends Fragment implements Observer {
                 .show();
     }
 
-    TimePickerDialog.OnTimeSetListener t = new TimePickerDialog.OnTimeSetListener() {
-        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-            mDateAndTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
-            mDateAndTime.set(Calendar.MINUTE, minute);
-            setInitialDateTime();
-        }
+    TimePickerDialog.OnTimeSetListener t = (view, hourOfDay, minute) -> {
+        mDateAndTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+        mDateAndTime.set(Calendar.MINUTE, minute);
+        setInitialDateTime();
     };
 
-    DatePickerDialog.OnDateSetListener d = new DatePickerDialog.OnDateSetListener() {
-        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            mDateAndTime.set(Calendar.YEAR, year);
-            mDateAndTime.set(Calendar.MONTH, monthOfYear);
-            mDateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            setInitialDateTime();
-        }
+    DatePickerDialog.OnDateSetListener d = (view, year, monthOfYear, dayOfMonth) -> {
+        mDateAndTime.set(Calendar.YEAR, year);
+        mDateAndTime.set(Calendar.MONTH, monthOfYear);
+        mDateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        setInitialDateTime();
     };
 
     private void setInitialDateTime() {
