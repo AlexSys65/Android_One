@@ -1,11 +1,16 @@
 package ru.razuvaev.android_one.ui;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
+import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -14,6 +19,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.google.android.material.textfield.TextInputEditText;
+
+import java.util.Calendar;
 
 import ru.razuvaev.android_one.FragmentSendDataListener;
 import ru.razuvaev.android_one.Observer;
@@ -27,6 +34,7 @@ public class NoteEditFragment extends Fragment implements Observer {
     protected TextView mEditDate;
     protected TextInputEditText mDescription;
     protected FragmentSendDataListener mFragmentSendDataListener;
+    protected Calendar mDateAndTime = Calendar.getInstance();
 
     public NoteEditFragment() {
 
@@ -85,7 +93,12 @@ public class NoteEditFragment extends Fragment implements Observer {
         super.onViewCreated(view, savedInstanceState);
 
         mEditDate = view.findViewById(R.id.date_edit);
+        if (mEditDate.getText().toString().isEmpty()) {
+            setInitialDateTime();
+        }
+
         mDescription = view.findViewById(R.id.edit_text_note);
+
 
         assert getArguments() != null;
         Note note = getArguments().getParcelable(KEY_NOTE_EDIT);
@@ -99,8 +112,56 @@ public class NoteEditFragment extends Fragment implements Observer {
             }
             return true;
         });
+
+        mEditDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(requireContext(), "Edit date", Toast.LENGTH_SHORT).show();
+                setDate(v);
+                setTime(v);
+            }
+        });
         mEditDate.setText(note.getDateTime());
         mDescription.setText(note.getDescription());
+    }
+
+    private void setDate(View v) {
+        new DatePickerDialog(getContext(), d,
+                mDateAndTime.get(Calendar.YEAR),
+                mDateAndTime.get(Calendar.MONTH),
+                mDateAndTime.get(Calendar.DAY_OF_MONTH))
+                .show();
+    }
+
+    public void setTime(View v) {
+        new TimePickerDialog(getContext(), t,
+                mDateAndTime.get(Calendar.HOUR_OF_DAY),
+                mDateAndTime.get(Calendar.MINUTE), true)
+                .show();
+    }
+
+    TimePickerDialog.OnTimeSetListener t = new TimePickerDialog.OnTimeSetListener() {
+        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+            mDateAndTime.set(Calendar.HOUR_OF_DAY, hourOfDay);
+            mDateAndTime.set(Calendar.MINUTE, minute);
+            setInitialDateTime();
+        }
+    };
+
+    DatePickerDialog.OnDateSetListener d = new DatePickerDialog.OnDateSetListener() {
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            mDateAndTime.set(Calendar.YEAR, year);
+            mDateAndTime.set(Calendar.MONTH, monthOfYear);
+            mDateAndTime.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+            setInitialDateTime();
+        }
+    };
+
+    private void setInitialDateTime() {
+        mEditDate.setText(DateUtils.formatDateTime(getContext(),
+                mDateAndTime.getTimeInMillis(),
+                DateUtils.FORMAT_SHOW_DATE | DateUtils.FORMAT_SHOW_YEAR
+                        | DateUtils.FORMAT_SHOW_TIME));
     }
 
     private void saveChangeNote(Note note, TextView mEditDate, TextInputEditText mDescription) {
