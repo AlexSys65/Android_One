@@ -14,4 +14,9 @@
     <string name="nav_header_subtitle">username@mail.ru</string>
     <string name="about_program">Примечание. При добавлении графа навигации в проект, если вы еще не добавили зависимости навигации в файл приложения build.gradle, Android Studio отображает запрос и предлагает добавить зависимости за вас. Однако обратите внимание, что Android Studio 3.4 добавляет версии зависимостей, отличные от KTX 1.0.0, поэтому обязательно замените эти значения, если вы используете Kotlin или собираетесь использовать версию 2.0.0 или выше.</string>
     <string name="save_detail">Сохранить</string>
+    <string name="name_edit_tool_bar">Редактирование заметки</string>
+    <string name="action_open">Открыть</string>
+    <string name="action_update">Обновить</string>
+    <string name="action_delete">Удалить</string>
+    <string name="action_choose">Выбрать</string>
 </resources>

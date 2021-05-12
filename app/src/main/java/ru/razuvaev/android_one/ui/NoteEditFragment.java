@@ -102,9 +102,8 @@ public class NoteEditFragment extends Fragment implements Observer {
 
         assert getArguments() != null;
         Note note = getArguments().getParcelable(KEY_NOTE_EDIT);
-
         Toolbar toolbar = view.findViewById(R.id.edit_tool_bar);
-
+        toolbar.setTitle(getResources().getString(R.string.name_edit_tool_bar));
         toolbar.setOnMenuItemClickListener(item -> {
             if (item.getItemId() == R.id.action_save_detail) {
                 Toast.makeText(requireContext(), "Save detail", Toast.LENGTH_SHORT).show();
@@ -114,7 +113,7 @@ public class NoteEditFragment extends Fragment implements Observer {
         });
 
         mEditDate.setOnClickListener(v -> {
-            Toast.makeText(requireContext(), "Edit date", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(requireContext(), "Edit date", Toast.LENGTH_SHORT).show();
             setDate(v);
             setTime(v);
         });

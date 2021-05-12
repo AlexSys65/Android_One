@@ -12,8 +12,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -90,6 +92,36 @@ public class NotesFragment extends Fragment {
         RecyclerView noteList = view.findViewById(R.id.note_list);
         noteList.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
         noteList.setAdapter(adapter);
+    }
+
+    @Override
+    public void onCreateContextMenu(@NonNull ContextMenu menu, @NonNull View v, @Nullable ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        requireActivity().getMenuInflater().inflate(R.menu.menu_list_context, menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+            case (R.id.action_open_context) : {
+                Toast.makeText(requireContext(), "Open note", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+            case (R.id.action_update_context) : {
+                Toast.makeText(requireContext(), "\n" +
+                        "Choose note", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+            case (R.id.action_delete_context) : {
+                Toast.makeText(requireContext(), "Delete note", Toast.LENGTH_SHORT).show();
+                return true;
+            }
+            default: {
+                Toast.makeText(requireContext(), "Default action", Toast.LENGTH_SHORT).show();
+            }
+        }
+        return super.onContextItemSelected(item);
     }
 
     @Override

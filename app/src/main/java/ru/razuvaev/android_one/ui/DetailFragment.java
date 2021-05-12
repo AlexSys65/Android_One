@@ -2,7 +2,9 @@ package ru.razuvaev.android_one.ui;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -88,12 +90,7 @@ public class DetailFragment extends Fragment implements Observer {
                 }
                 case (R.id.action_edit_detail): {
                     Toast.makeText(requireContext(), "edit note", Toast.LENGTH_SHORT).show();
-                    if (getActivity() instanceof PublisherHolder) {
-                        PublisherHolder holder = (PublisherHolder) getActivity();
-                        holder.getPublisher().notify(note);
-                    }
-                    mFragmentSendDataListener.onSendData(note, "edit");
-
+                    editDetail(note);
                 }
             }
             return true;
@@ -102,9 +99,20 @@ public class DetailFragment extends Fragment implements Observer {
         mDetail = view.findViewById(R.id.detail_note);
         mDateTime = view.findViewById(R.id.date_field);
 
+        mDetail.setOnClickListener(v -> editDetail(note));
 
         mDateTime.setText(note.getDateTime());
         mDetail.setText(note.getDescription());
+    }
+
+
+
+    private void editDetail(Note note) {
+        if (getActivity() instanceof PublisherHolder) {
+            PublisherHolder holder = (PublisherHolder) getActivity();
+            holder.getPublisher().notify(note);
+        }
+        mFragmentSendDataListener.onSendData(note, "edit");
     }
 
     @Override
