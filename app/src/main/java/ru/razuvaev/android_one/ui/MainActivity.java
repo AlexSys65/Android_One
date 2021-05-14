@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import ru.razuvaev.android_one.FragmentSendDataListener;
@@ -25,16 +26,16 @@ public class MainActivity extends AppCompatActivity
 
     protected final Publisher mPublisher = new Publisher();
     protected FragmentManager myFragmentManager = getSupportFragmentManager();
-    protected boolean mIsLandscape = false;
+    protected int mIsOrientation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_drawer_layout);
 
-        mIsLandscape = getResources().getBoolean(R.bool.isLandscape);
+        mIsOrientation = getResources().getConfiguration().orientation;
 
-        if (!mIsLandscape) {
+        if (mIsOrientation == Configuration.ORIENTATION_PORTRAIT) {
 
             Fragment fragment = myFragmentManager.findFragmentById(R.id.fragment_container);
             if (fragment == null) {
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity
                     .commit();
             return;
         }
-        if (mIsLandscape) {
+        if (mIsOrientation == Configuration.ORIENTATION_LANDSCAPE) {
             myFragmentManager.beginTransaction()
                     .replace(R.id.details_fragment, DetailFragment.newInstance(selectedItem))
                     .commit();
