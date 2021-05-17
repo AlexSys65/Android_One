@@ -14,7 +14,13 @@ public class Note implements Parcelable {
     public Note(String id, String dateTime, String description) {
         this.mId = id;
         this.dateTime = dateTime;
-        this.nameNote = description.substring(0, END_INDEX_NAME);
+        int mEndSubStr = 0;
+        if (description.length() < END_INDEX_NAME) {
+            mEndSubStr = description.length();
+        } else {
+            mEndSubStr = END_INDEX_NAME;
+        }
+        this.nameNote = description.substring(0, mEndSubStr);
         this.description = description;
     }
 

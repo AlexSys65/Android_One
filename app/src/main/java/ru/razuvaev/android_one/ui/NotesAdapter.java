@@ -17,7 +17,7 @@ import ru.razuvaev.android_one.repository.Note;
 
 public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHolder> {
 
-    private final ArrayList<Note> mData;
+    private ArrayList<Note> mData;
     private final Fragment mFragment;
 
 
@@ -29,9 +29,11 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
         this.mData = mData;
     }
 
-    public void addData(List<Note> toAdd) {
-        mData.clear();
-        mData.addAll(toAdd);
+    public void addData(ArrayList<Note> toAdd) {
+        if (mData != null) {
+            mData.clear();
+        }
+        mData = toAdd;
     }
 
     @NonNull
@@ -49,6 +51,9 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
 
     @Override
     public int getItemCount() {
+        if (mData == null) {
+            return 0;
+        }
         return mData.size();
     }
 
@@ -77,6 +82,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.NotesViewHol
             mDateNote = itemView.findViewById(R.id.date_note);
             mNameNote = itemView.findViewById(R.id.name_note);
         }
+
         public void bind(Note note) {
             mDateNote.setText(note.getDateTime());
             mNameNote.setText(note.getNameNote());

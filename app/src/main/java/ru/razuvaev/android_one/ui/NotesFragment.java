@@ -22,15 +22,17 @@ import android.widget.Toast;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import ru.razuvaev.android_one.FragmentSendDataListener;
 import ru.razuvaev.android_one.R;
+import ru.razuvaev.android_one.repository.CallBack;
 import ru.razuvaev.android_one.repository.Note;
-import ru.razuvaev.android_one.repository.NoteRepository;
+import ru.razuvaev.android_one.repository.FirestoreNotesRepository;
 
 public class NotesFragment extends Fragment {
 
-    protected NoteRepository repository = new NoteRepository();
+    protected FirestoreNotesRepository repository = new FirestoreNotesRepository();
 
     protected FragmentSendDataListener mFragmentSendDataListener;
     protected ArrayList<Note> mNotes;
@@ -77,9 +79,28 @@ public class NotesFragment extends Fragment {
             return true;
         });
 
-        if (mNotes == null) mNotes = repository.getNotes();
-
         NotesAdapter adapter = new NotesAdapter(this, mNotes);
+        RecyclerView noteList = view.findViewById(R.id.note_list);
+
+        if (mNotes == null) {
+            FirestoreNotesRepository fireStore = new FirestoreNotesRepository();
+            fireStore.getNotes(new CallBack<ArrayList<Note>>() {
+                @Override
+                public void onSuccess(ArrayList<Note> value) {
+                    mNotes = value;
+                    adapter.addData(mNotes);
+                    noteList.setAdapter(adapter);
+                    noteList.invalidate();
+                }
+
+                @Override
+                public void onError(Throwable error) {
+
+                }
+            });
+        }
+
+        // NotesAdapter adapter = new NotesAdapter(this, mNotes);
 
         adapter.setClickListener(note -> {
             if (getActivity() instanceof PublisherHolder) {
@@ -89,7 +110,7 @@ public class NotesFragment extends Fragment {
             mFragmentSendDataListener.onSendData(note, "view");
         });
 
-        RecyclerView noteList = view.findViewById(R.id.note_list);
+        // RecyclerView noteList = view.findViewById(R.id.note_list);
         noteList.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
         noteList.setAdapter(adapter);
     }
@@ -104,16 +125,16 @@ public class NotesFragment extends Fragment {
     public boolean onContextItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()) {
-            case (R.id.action_open_context) : {
+            case (R.id.action_open_context): {
                 Toast.makeText(requireContext(), "Open note", Toast.LENGTH_SHORT).show();
                 return true;
             }
-            case (R.id.action_update_context) : {
+            case (R.id.action_update_context): {
                 Toast.makeText(requireContext(), "\n" +
                         "Choose note", Toast.LENGTH_SHORT).show();
                 return true;
             }
-            case (R.id.action_delete_context) : {
+            case (R.id.action_delete_context): {
                 Toast.makeText(requireContext(), "Delete note", Toast.LENGTH_SHORT).show();
                 return true;
             }
