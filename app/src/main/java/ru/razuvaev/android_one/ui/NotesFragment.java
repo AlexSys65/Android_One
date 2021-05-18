@@ -1,5 +1,6 @@
 package ru.razuvaev.android_one.ui;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,7 +22,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import ru.razuvaev.android_one.FragmentSendDataListener;
@@ -70,6 +73,8 @@ public class NotesFragment extends Fragment {
                 }
                 case (R.id.action_add): {
                     Toast.makeText(requireContext(), "Add", Toast.LENGTH_SHORT).show();
+                   // TODO открыть окно редактирования для создания новой заметки
+                    addNote();
                     break;
                 }
                 case (R.id.action_delete): {
@@ -113,6 +118,18 @@ public class NotesFragment extends Fragment {
         // RecyclerView noteList = view.findViewById(R.id.note_list);
         noteList.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
         noteList.setAdapter(adapter);
+    }
+
+    private void addNote() {
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy HH:mm:ss");
+        String dateNote = dateFormat.format(new Date());
+        Note newNote = new Note("", dateNote, "");
+        if (getActivity() instanceof PublisherHolder) {
+            PublisherHolder holder = (PublisherHolder) getActivity();
+            holder.getPublisher().notify(newNote);
+        }
+        mFragmentSendDataListener.onSendData(newNote, "edit");
     }
 
     @Override

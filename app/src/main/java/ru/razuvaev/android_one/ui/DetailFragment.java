@@ -89,7 +89,7 @@ public class DetailFragment extends Fragment implements Observer {
                     break;
                 }
                 case (R.id.action_edit_detail): {
-                    Toast.makeText(requireContext(), "edit note", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(requireContext(), "edit note", Toast.LENGTH_SHORT).show();
                     editDetail(note);
                 }
             }
@@ -107,7 +107,7 @@ public class DetailFragment extends Fragment implements Observer {
 
 
 
-    private void editDetail(Note note) {
+    public void editDetail(Note note) {
         if (getActivity() instanceof PublisherHolder) {
             PublisherHolder holder = (PublisherHolder) getActivity();
             holder.getPublisher().notify(note);

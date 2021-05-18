@@ -7,7 +7,7 @@ public interface NotesRepository {
 
     void getNotes(CallBack<ArrayList<Note>> callBack);
 
-    void addNotes(CallBack<Note> callBack);
+    void addNotes(String date, String s, CallBack<Note> callBack);
 
     void remove(Note item, CallBack<Object> callBack);
 }

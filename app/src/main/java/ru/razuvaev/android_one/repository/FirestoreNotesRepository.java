@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -13,6 +14,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -56,8 +58,25 @@ public class FirestoreNotesRepository implements NotesRepository {
     }
 
     @Override
-    public void addNotes(CallBack<Note> callBack) {
+    public void addNotes(String dateNote, String descriptionNote, CallBack<Note> callBack) {
+        HashMap<String, Object> data = new HashMap<>();
 
+        data.put(DATE, dateNote);
+        data.put(DESCRIPTION, descriptionNote);
+
+        fireStore.collection(NOTES)
+                .add(data)
+                .addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentReference> task) {
+
+                        if (task.isSuccessful()) {
+                            callBack.onSuccess(new Note(task.getResult().getId(), dateNote, descriptionNote));
+                        } else {
+                            callBack.onError(task.getException());
+                        }
+                    }
+                });
     }
 
     @Override
