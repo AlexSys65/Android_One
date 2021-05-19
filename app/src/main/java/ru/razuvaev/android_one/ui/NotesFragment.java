@@ -73,7 +73,6 @@ public class NotesFragment extends Fragment {
                 }
                 case (R.id.action_add): {
                     Toast.makeText(requireContext(), "Add", Toast.LENGTH_SHORT).show();
-                   // TODO открыть окно редактирования для создания новой заметки
                     addNote();
                     break;
                 }
@@ -130,6 +129,7 @@ public class NotesFragment extends Fragment {
             holder.getPublisher().notify(newNote);
         }
         mFragmentSendDataListener.onSendData(newNote, "edit");
+        String s = newNote.getDescription();
     }
 
     @Override

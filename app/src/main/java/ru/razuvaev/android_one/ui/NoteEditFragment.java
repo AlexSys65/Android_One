@@ -25,6 +25,8 @@ import java.util.Calendar;
 import ru.razuvaev.android_one.FragmentSendDataListener;
 import ru.razuvaev.android_one.Observer;
 import ru.razuvaev.android_one.R;
+import ru.razuvaev.android_one.repository.CallBack;
+import ru.razuvaev.android_one.repository.FirestoreNotesRepository;
 import ru.razuvaev.android_one.repository.Note;
 import ru.razuvaev.android_one.repository.Publisher;
 
@@ -35,6 +37,7 @@ public class NoteEditFragment extends Fragment implements Observer {
     protected TextInputEditText mDescription;
     protected FragmentSendDataListener mFragmentSendDataListener;
     protected Calendar mDateAndTime = Calendar.getInstance();
+    protected FirestoreNotesRepository mRepository = new FirestoreNotesRepository();
 
     public NoteEditFragment() {
 
@@ -113,7 +116,6 @@ public class NoteEditFragment extends Fragment implements Observer {
         });
 
         mEditDate.setOnClickListener(v -> {
-            //Toast.makeText(requireContext(), "Edit date", Toast.LENGTH_SHORT).show();
             setDate(v);
             setTime(v);
         });
@@ -157,10 +159,22 @@ public class NoteEditFragment extends Fragment implements Observer {
     }
 
     private void saveChangeNote(Note note, TextView mEditDate, TextInputEditText mDescription) {
-       /* note.setDateTime(mEditDate.toString());
+        note.setDateTime(mEditDate.toString());
         note.setDescription(mDescription.toString());
-        note.setNameNote();*/
+        note.setNameNote();
         //TODO Передать измененный объект note во фрагмент деталей, вернуться к режиму просмотра.
+        mRepository.addNotes(mEditDate.getText().toString(), mDescription.getText().toString(), new CallBack<Note>() {
+            @Override
+            public void onSuccess(Note value) {
+                // Закрыть окно редактирования и открыть окно просмотра
+            }
+
+            @Override
+            public void onError(Throwable error) {
+
+            }
+        });
+
     }
 
 
