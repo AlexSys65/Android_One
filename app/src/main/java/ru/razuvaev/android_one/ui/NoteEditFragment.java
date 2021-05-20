@@ -3,6 +3,7 @@ package ru.razuvaev.android_one.ui;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateUtils;
 import android.view.LayoutInflater;
@@ -20,6 +21,7 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 import ru.razuvaev.android_one.FragmentSendDataListener;
@@ -167,6 +169,8 @@ public class NoteEditFragment extends Fragment implements Observer {
             @Override
             public void onSuccess(Note value) {
                 // Закрыть окно редактирования и открыть окно просмотра
+                Intent intent = new Intent(getActivity(), MainActivity.class);
+                startActivity(intent);
             }
 
             @Override

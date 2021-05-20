@@ -35,7 +35,7 @@ import ru.razuvaev.android_one.repository.FirestoreNotesRepository;
 
 public class NotesFragment extends Fragment {
 
-    protected FirestoreNotesRepository repository = new FirestoreNotesRepository();
+    protected FirestoreNotesRepository mRepository = new FirestoreNotesRepository();
 
     protected FragmentSendDataListener mFragmentSendDataListener;
     protected ArrayList<Note> mNotes;
@@ -76,9 +76,9 @@ public class NotesFragment extends Fragment {
                     addNote();
                     break;
                 }
-                case (R.id.action_delete): {
+                /*case (R.id.action_delete): {
                     Toast.makeText(requireContext(), "Delete", Toast.LENGTH_SHORT).show();
-                }
+                }*/
             }
             return true;
         });
@@ -104,7 +104,6 @@ public class NotesFragment extends Fragment {
             });
         }
 
-        // NotesAdapter adapter = new NotesAdapter(this, mNotes);
 
         adapter.setClickListener(note -> {
             if (getActivity() instanceof PublisherHolder) {
@@ -114,7 +113,6 @@ public class NotesFragment extends Fragment {
             mFragmentSendDataListener.onSendData(note, "view");
         });
 
-        // RecyclerView noteList = view.findViewById(R.id.note_list);
         noteList.setLayoutManager(new LinearLayoutManager(view.getContext(), LinearLayoutManager.VERTICAL, false));
         noteList.setAdapter(adapter);
     }
@@ -130,6 +128,21 @@ public class NotesFragment extends Fragment {
         }
         mFragmentSendDataListener.onSendData(newNote, "edit");
         String s = newNote.getDescription();
+    }
+
+    private void deleteItem(Note note, int index) {
+
+        mRepository.remove(note, new CallBack<Note>() {
+            @Override
+            public void onSuccess(Note value) {
+
+            }
+
+            @Override
+            public void onError(Throwable error) {
+
+            }
+        });
     }
 
     @Override

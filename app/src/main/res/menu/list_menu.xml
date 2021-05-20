@@ -12,9 +12,5 @@
         android:icon="@android:drawable/ic_menu_add"
         android:title="@string/action_add"
         app:showAsAction="ifRoom" />
-    <item
-        android:id="@+id/action_delete"
-        android:icon="@android:drawable/ic_delete"
-        android:title="@string/action_del"
-        app:showAsAction="ifRoom" />
+
 </menu>

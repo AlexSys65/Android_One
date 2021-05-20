@@ -83,7 +83,26 @@ public class FirestoreNotesRepository implements NotesRepository {
     }
 
     @Override
-    public void remove(Note item, CallBack<Object> callBack) {
+    public void remove(Note item, CallBack<Note> callBack) {
+
+        fireStore.collection(NOTES)
+                .document(item.getId())
+                .delete()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+
+                        if (task.isSuccessful()) {
+                            callBack.onSuccess(item);
+                        } else {
+                            callBack.onError(task.getException());
+                        }
+
+                    }
+                });
 
     }
+
+
+
 }

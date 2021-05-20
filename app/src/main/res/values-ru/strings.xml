@@ -19,4 +19,8 @@
     <string name="action_update">Обновить</string>
     <string name="action_delete">Удалить</string>
     <string name="action_choose">Выбрать</string>
+    <string name="alert_dialog_title">Внимание</string>
+    <string name="alert_dialog_message">Вы действительно хотите удалить эту заметку?</string>
+    <string name="positive">Да</string>
+    <string name="negative">Нет</string>
 </resources>
